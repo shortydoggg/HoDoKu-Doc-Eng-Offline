@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Versionsgeschichte</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Versionsgeschichte für HoDoKu - ein Generator/Helfer/Analysator für Sudokus geschrieben in Java">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsche version,version,geschichte,änderungen,english,lösungstechniken,tipps,fish,uniqueness,coloring,chains,als,wings,subsets">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu li.mChange a, #menu li.mChange a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/changelog.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/changelog.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Versionsgeschichte</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#v220">Version 2.2</a></li>
+        <li><a href="#v213">Version 2.1.3</a></li>
+        <li><a href="#v212">Version 2.1.2</a></li>
+        <li><a href="#v211">Version 2.1.1</a></li>
+        <li><a href="#v21">Version 2.1</a></li>
+        <li><a href="#v201">Version 2.0.1</a></li>
+        <li><a href="#v20">Version 2.0</a></li>
+        <li><a href="#v124">Version 1.2.4</a></li>
+        <li><a href="#v12">Version 1.2</a></li>
+        <li><a href="#v11">Version 1.1</a></li>
+        <li><a href="#v10">Version 1.0</a></li>
+        <li><a href="#v090">Version 0.9.0</a></li>
+    </ul>
+    <hr>
+
+    <h1><a name="v220"></a>2012-07-31: Version 2.2</h1>
+    <p>Version 2.2 führt den ColoKu-Modus neu ein und enthält viele kleine Änderungen
+    an der Benutzeroberfläche.</p>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>#204: ColorKu-Modus hinzugefügt (Danke an ddyer und CCV)</li>
+        <li>#3486780: Bidirektionale ALS-Chain-Suche in "alle Lösungsschritte"</li>
+        <li>#3476006: Tastaturbehandlung verbessert</li>
+        <li>#3387327: Eigene Mausbehandlung eingeführt</li>
+        <li>#3480600: Benutzerdefinierte Schriftgrößen für sehbeeinträchtigte Benutzer</li>
+        <li>#3463520: "Auto-Tab"-Funktion implementiert</li>
+        <li>#3489431: Kompatibilität zu SimpleSudoku verbessert</li>
+        <li>#3489725: BrowserLauncher2-Bibliothek entfernt</li>
+        <li>#3454460: "Sudoku speichern" hinzugefügt</li>
+        <li>#3387347: Einschalten von "Alle Kandidaten anzeigen" erhält Eliminierungen</li>
+        <li>#3510435: Werte aus Zellen entfernen mit Hilfe der Maus</li>
+        <li>#3515456: Locked Candidates Typ 1 und 2 getrennt konfigurierbar</li>
+        <li>#3520336: Eigenschaften-Dialog reorganisiert</li>
+        <li>#3520334: UI für "Sudoku als Bild speichern" überarbeitet</li>
+        <li>#3515747: Abweichungen rückgängig machen im Alternativen Mausmodus</li>
+        <li>#3514371: Filter-Schalter ausgrauen, wenn kein Kandidat mehr verfügbar ist</li>
+        <li>#3514367: Filter auf Kandidaten statt Zellen</li>
+        <li>#3523432: Dicke der Boxenlinien konfigurierbar</li>
+        <li>#3514351: Schwierigkeit für "Schwer" und "Unfair" reduziert</li>
+        <li>#3527849: Zustand von Färben Zellen oder Kandidaten wird bei Programmende gespeichert</li>
+    </ul>
+    <p>Bugs fixed:</p>
+    <ul>
+        <li>#3476976: Debug-Meldungen in Konsole gelöscht</li>
+        <li>#3492680: Inkonsistenz bei Fischsortierung (Finned/Sashimi)</li>
+        <li>#3513608: Comparison Exception in AlsComparer</li>
+        <li>#3513603: Suche nach allen Lösungsschritten ignoriert ALS-Typen</li>
+        <li>#3509643: Fehler bei Undo/Redo und Alle Lösungsschritte</li>
+        <li>#3513680: Probleme bei der Darstellung von AL-XZ</li>
+        <li>#3513851: Singles falsch sortiert in Alle Lösungsschritte</li>
+        <li>#3509639: Löschen von Werten aus Zellen fehlerhaft</li>
+        <li>#3509637: Alle Lösungsschritte nicht korrekt synchronisiert</li>
+        <li>#3514467: addSudokuToHistory() wirft eine Exception</li>
+        <li>#3515379: Filter setzt ungültige Kandidaten/Werte</li>
+        <li>#3516396: Filter und Hidden Singles</li>
+        <li>#3514464: Ändern der Level-Scores löscht die vorberechneten Sudokus nicht</li>
+        <li>#3516415: Hintergrund-Berechnung unterbricht Background-Thread</li>
+        <li>#3521140: Zelle über Kontext-Menü setzen schaltet Undo nicht frei</li>
+        <li>#3530975: Werte in Zellregionen setzen ist fehlerhaft</li>
+    </ul>
+    <hr>
+   
+    <h1><a name="v213"></a>2012-01-19: Version 2.1.3</h1>
+    <p>Version 2.1.3 behebt einen kritischen Fehler, der verhindert, dass HoDoKu
+        startet, wenn keine Default-Konfigurationsdatei im System existiert.</p>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>keine</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#3475960: HoDoKu startet nicht, wenn keine Default-Konfigdatei existiert</li>
+    </ul>
+    <hr>
+    <h1><a name="v212"></a>2012-01-16: Version 2.1.2</h1>
+    <p>Version 2.1.2 ist ein Service-Release, das einen Fehler in der Hintertür-Suche
+        und mehrere Fehler, die nur im Batch-Betrieb auftreten, behebt.
+        Einige kleinere Oberflächen-Funktionen wurden hinzugefügt.</p>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>#3452538: Blöcke können nun verschiedene Hintergrundfarben haben</li>
+        <li>#3436698: Kommandozeilen-Option /sl hinzugefügt (erlaubt das Erzeugen von Sudokus mit bestimmtem Schwierigkeitsgrad im Batch-Betrieb)</li>
+        <li>#3473994: Wenn Filter für mehr als einen Kandidaten aktiv sind, können nun auch jene Zellen angezeigt werden, die mindestens einen der Kandidaten enthalten</li>
+        <li>#3463740: Bei der Anzeige aller Lösungsschritte (sortiert nach Technik) wird nun angezeigt, wie viele verschiedene Eliminierungen pro Technik möglich sind</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#3436963: Suche nach Hintertüren funktioniert nicht</li>
+        <li>#3467383: Ausnahmefehler, wenn die jar-Datei umbenannt wurde</li>
+        <li>#3453781: Ausnahmefehler beim Erzeugen von Puzzles im Batch-Betrieb</li>
+        <li>#3454452: Drücken von &lt;strg&gt;&lt;c&gt; im Batch-Betrieb löst einen Ausnahmefehler aus</li>
+        <li>#3425041: Einfügen aus der Zwischenablage in MacOS funktioniert nicht immer</li>
+        <li>#3454627: volatile anzFound nicht korrekt verändert</li>
+        <li>#3432099: Eingabe von Ziffern funktioniert auf manchen Laptops nicht</li>
+    </ul>
+    <hr>
+    <h1><a name="v211"></a>2011-10-23: Version 2.1.1</h1>
+    <p>Version 2.1.1 beseitigt einen Fehler in der internen Zwischenspeicherung, 
+        der zu fehlerhaften Lösungsschritten für Template Set, Template Delete, 
+        Brute Force (nur im Batch-Modus) und Kraken Fish führen konnte.</p>
+    <p>Die Anzeige der selektierten Zelle kann eine bestimmte Zeit nach der
+        letzten Änderung der Selektion abgeschaltet werden.</p>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>#3427511: Wenn eine einzelne Zelle selektiert ist, wird die Anzeige der Selektion
+            nach einer einstellbaren Zeit gelöscht (optional)</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#3427507: Brute Force Solver funktioniert nicht im Batch Modus</li>
+        <li>#3427508: Template Set/Delete erzeugt nach einiger Zeit falsche Lösungsschritte</li>
+        <li>#3427509: Kraken Fish-Suche kann Exceptions werfen</li>
+        <li>#3427510: Anzeige gefärbter Kandidaten funktioniert nicht richtig</li>
+    </ul>
+    <hr>
+    <h1><a name="v21"></a>2011-10-20: Version 2.1</h1>
+    <p>Version 2.1 enthält eine komplette Neuimplementierung der internen 
+        Datenstrukturen und Solverroutinen, was das Programm zwei bis drei Mal 
+        schneller macht als Version 2.0.</p>
+    <p>Da die Datenstrukturen geändert wurden, hat sich auch das Dateiformat
+        der hsol-Dateien geändert. Alte hsol-Dateien können mit der neuen
+        Version problemlos geladen werden (Sudoku und Lösungswege), aber
+        eventuell in der Datei gespeicherte Sicherungspunkte gehen verloren.</p>
+    <p>Eine Auswahl an neuen Funktionen:</p>
+    <ul>
+        <li>Hinweis-Bereich und Werkzeugleiste können abgeschaltet werden, um die
+            Anzeige auf kleinen Bildschirmen zu verbessern; ein Vollbildmodus
+            nützt die verfügbare Auflösung noch besser aus.</li>
+        <li>Neue erweiterte Druckoptionen, inklusive neuem Booklet-Drucker</li>
+        <li>Sudokus werden nun im Voraus in einem Hintergrundprozess berechnet;
+            dadurch erscheinen neue Sudokus praktisch immer ohne Verzögerung</li>
+        <li>Neuer vereinfachter Mausmodus (optional)</li>
+        <li>Fortschrittsanzeige</li>
+        <li>HoDoKu kann jetzt noch einfacher mitgenommen werden: Wenn in dem Verzeichnis,
+            aus dem HoDoKu gestartet wurde, eine Konfigurationsdatei mit Namen 
+            hodoku.hcfg existiert, wird sie automatisch geladen; einfach
+            Programm und Optionsdatei in ein Verzeichnis eines USB-Sticks
+            kopieren und HoDoKu steht überall mit denselben Optionen
+            wie zu Hause zur Verfügung</li>
+    </ul>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>#3387351: Neue erweiterte Druckoptionen, Booklet-Drucker</li>
+        <li>#3387344: Neuer vereinfachter Mausmodus</li>
+        <li>#2940096: HoDoKu kann jetzt einfach zwischen Rechnern transportiert werden</li>
+        <li>#2940101/#3011686: Sudokus werden im Hintergrund vorausberechnet</li>
+        <li>#3387345: Fortschrittsanzeige hinzugefügt</li>
+        <li>#2990569: Tooltips im Hauptfenster hinzugefügt</li>
+        <li>#3324082: Filtern mehrerer Kandidaten gleichzeitig möglich</li>
+        <li>#3296914: Kandidaten können mit Hilfe der Tastatur gelöscht werden, wenn mehrere Zellen gleichzeitig selektiert sind</li>
+        <li>#2970905/#3144406: Laden ungültiger Sudokus überarbeitet</li>
+        <li>#2995579: Erzeugen von Übungs-Sudokus beschleunigt</li>
+        <li>#2689169: URs/HRs mit fehlenden Kandidaten werden erkannt</li>
+        <li>#3387335: Vollbildmodus; Hinweis-Bereich und Werkzeugleiste ausblendbar</li>
+        <li>#3387341: Anzeige der Selektion geändert (optional)</li>
+        <li>#3387355: Filter für Zellen mit nur noch zwei Kandidaten hinzugefügt</li>
+        <li>#3387356: Spielmodus als Startoption hinzugefügt</li>
+        <li>#3387357: Knöpfe für Hinweise in der Werkzeugleiste (optional)</li>
+        <li>#3387359: "Lösen bis"-Funktion eingeführt</li>
+        <li>#3394519: Anzeige von gefärbten, aber bereits gelösten Zellen ist jetzt konfigurierbar</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#3098767: Fenster bleiben teilweise sichtbar</li>
+        <li>#3394539: Aktuelle Schwierigkeitsstufe wurde nicht gespeichert</li>
+        <li>#3387212: Beim Druck von Lösungswegen können falsche Bilder gedruckt werden</li>
+        <li>#3303097: Anzeige selektierter Objekte unter Nimbus korrigiert</li>
+        <li>#3214361: Fehler beim Laden ungültiger Sudokus korrigiert</li>
+        <li>#3134693: Hidden Pair fälschlicherweise als Locked Pair identifiziert</li>
+        <li>#3054092: "Abweichungen anzeigen"-Option wurde immer wieder zurückgesetzt</li>
+        <li>#2954459: Pfeile falsch gezeichnet</li>
+        <li>#3387353: Wert in Gruppe von Zellen setzen funktioniert nicht richtig</li>
+    </ul>
+    <hr>
+    <h1><a name="v201"></a>2010-04-14: Version 2.0.1</h1>
+    <p>Version 2.0.1 behebt einen Fehler, der bewirkte, dass X-Chains, XY-Chains
+        und Remote Pairs oft nicht gefunden wurden.</p>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>#2974069: Import der fix gesetzten Zellen in ein bestehendes Sudoku</li>
+        <li>#2987128: Lösungswege können nun ausgedruckt werden</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#2984538: XY-Chains nicht gefunden</li>
+    </ul>
+    <hr>
+    <h1><a name="v20"></a>2010-03-11: Version 2.0</h1>
+    <p>Version 2.0 ist ein umfangreiches Update der Benutzeroberfläche. Die neuen Funktionen
+    umfassen eine komplett neue <a href="docs_play.html#mouse">Maussteuerung</a>,
+    einen <a href="docs_play.html#modes">Lern- und Übungsmodus</a>, eine
+    <a href="docs_play.html#create_enter_5">Verlausfsfunktion für erzeugte Sudokus</a>,
+    <a href="docs_play.html#savep">Sicherungspunkte</a>, neue <a href="docs_fas.html">Sortieroptionen</a> in
+    der "Alle Lösungsschritte finden"-Ansicht, ein <a href="docs_solv.html#progress">Fortschrittsmaß</a>
+    für jeden berechneten Lösungsschritt, eine <a href="docs_solv.html#backdoor">Suchfunktion für
+    Hintertüren</a> und Vieles mehr.</p>
+    <p>Das Erscheinungsbild der Oberfläche wurde überarbeitet und das Programm wurde unter Windows 7 getestet.</p>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>#2834110: Neue Maussteuerung</li>
+        <li>#2940268: Selektion von Zellbereichen mit der Tastatur</li>
+        <li>#2940098: Lern-/Übemodus hinzugefügt</li>
+        <li>#2689181: Suchfunktion für Hintertüren</li>
+        <li>#2940105: Sicherungspunkte implementiert</li>
+        <li>#2940106: Verlaufsfunktion für erzeugte Sudokus hinzugefügt</li>
+        <li>#2939789: Färben für Kandidaten (nicht nur Zellen)</li>
+        <li>#2939792: Direkte Links zum Benutzerhandbuch und Lösungsstrategie-Führer im Hilfemenü</li>
+        <li>#2939800: Eigene Menüeinträge zum Speichern/Laden der Konfiguration</li>
+        <li>#2834095: [shift][ctrl][cursor] springt zur nächsten gefilterten Zelle, wenn Filter aktiv sind</li>
+        <li>#2689174: Sortieroptionen in der Ansicht "Alle Schritte"</li>
+        <li>#2689183: Fortschrittsmaß implementiert</li>
+        <li>#2953525: Neue Anzeigeoptionen für Fische (/vf)</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#2790208: Ergebnisse für UR nicht optimal</li>
+        <li>#2834090: Beim Export ungültiger Grid als PMs wurden leere Zellen nicht korrekt behandelt</li>
+        <li>#2834091: Ansichten wurden nicht neu angezeigt, wenn ein ungültiges Grid geladen wurde</li>
+        <li>#2834085: "Alle Schritte finden" findet BUG+1 nicht</li>
+        <li>#2946982: Position des horizontalen Trennbalkens wurde nicht korrekt angepasst</li>
+        <li>#2834087: Kürzeste XY-Chain wurde nicht gefunden</li>
+        <li>#2790209: Short Cuts für Schwierigkeitsstufen funktionieren nicht korrekt</li>
+        <li>#2811672: Filterfunktion war fehlerhaft, wenn "Alle Kandidaten anzeigen" nicht gewählt war</li>
+        <li>#2795464: Grouped Continuous Nice Loops eliminiert zu viele Kandidaten</li>
+    </ul>
+    <hr>
+    <h2><a name="v124"></a>2009-05-08: Version 1.2.4</h2>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>#2772853: Strg-Pfeiltaste bewegt den Cursor zur nächsten ungelösten Zelle</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#2762372: Coloring findet nicht alle möglichen Eliminierungen</li>
+        <li>#2765903: Fehlerhafte Behandlung Siamesischer Fische bei Suche nach Kraken</li>
+        <li>#2765909: Bei Kraken-Suche wurden immer ALS-Knoten verwendet</li>
+        <li>#2788800: "Nur ein Fish pro Eliminierung" gab nicht den einfachsten Fisch zurück</li>
+        <li>#2788799: Suche nach allen Fischen findet Basic Fish nur, wenn nach Mutant Fish gesucht wird</li>
+        <li>#2788798: Neuer Hinweis für Franken/Mutant Fish konnte Basic Fish zurückgeben</li>
+    </ul>
+    <hr>
+    <h2><a name="v12"></a>2009-04-04: Version 1.2</h2>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>#2723180: Unterstützung für Death Blossom hinzugefügt</li>
+        <li>#2689196: "Spiel ändern" hinzugefügt</li>
+        <li>#2689167: "Spiel zurücksetzen" hinzugefügt, "Spiel neu starten" überarbeitet</li>
+        <li>#2690534: Type 1/Type 2 zu Kraken Fish-Ausgabe hinzugefügt</li>
+        <li>#2533240: Dual 2-String Kites und Dual Empty Rectangles hinzugefügt</li>
+        <li>#2691712: "Nur ein Lösungsschritt"-Option für Fisch-Suche hinzugefügt</li>
+        <li>#2689171: Unterstützung für Siamese Fish hinzugefügt</li>
+        <li>#2690539: Kandidaten in (Kraken-) Fisch-Suche können jetzt gewählt werden</li>
+        <li>#2512887: ALS Chaining überarbeitet um überlappende ALS zu ermöglichen</li>
+        <li>#2691742: Konfiguration für Kraken-Fish-Suche hinzugefügt (normaler Solver)</li>
+        <li>#2723253: ALS-Überlappungen können nun konfiguriert werden</li>
+        <li>#2723247: ALS-Knoten optional in NiceLoops/AICs und Forcing Chains/Nets</li>
+        <li>#2689864: Statistik-Option für Batch-Betrieb hinzugefügt (/vst)</li>
+        <li>#2689186: Reihenfolge der Lösungsschritte kann jetzt mit Drag und Drop verändert werden</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#2690494: "Alle Lösungsschritte"-Ansicht wurde nicht korrekt zurückgesetzt, wenn ein neues Sudoku erzeugt wurde</li>
+        <li>#2689165: Ausgabe für Template Set zeigt betroffene Zellen nicht an</li>
+        <li>#2689164: XY-Chain Notation zeigt nicht Start- und End-Links</li>
+        <li>#2690582: Quick-Links in "Alle Lösungsschritte" wurden bei Programmende nicht gespeichert</li>
+    </ul>
+    <hr>
+    <h2><a name="v11"></a>2009-03-03: Version 1.1</h2>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>#2512895: Unterstützung für Kraken Fisch hinzugefügt</li>
+        <li>Unterstützung für Turbot Fisch hinzugefügt</li>
+        <li>#2579893: ERs mit nur zwei Zellen im ER können jetzt gefunden werden</li>
+        <li>#2512881: Sue de Coq mit demselben zusätzlichen Kandidaten in beiden Flanken-Sets werden jetzt unterstützt</li>
+        <li>#2512876: Unterstützung für doppelt verkettete ALS-XZ hinzugefügt</li>
+        <li>#2512874: Reihung der Chains verändert (Größe von ALS-Knoten wird berücksichtigt)</li>
+        <li>#2577506: Fisch-Typ (Endo-Fins, Kannibalismus) wird bei Konsolenausgabe angegeben</li>
+        <li>Neue Kommandozeilenoptionen: /f, /bsa, /bsaf, /stdin</li>
+        <li>#2634172: ALS Knoten in Continuous Nice Loops werden jetzt berücksichtigt</li>
+        <li>Die Funktion "Alle Lösungsschritte finden" kann jetzt frei konfiguriert werden.</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#2619238: ALS wurden in Lösungsschritten mit mehr als einer Chain unter Umständen nicht korrekt angezeigt</li>
+        <li>#2619244: ALS-Buddies in Chains wurden nicht korrekt behandelt</li>
+        <li>#2628375: Einige AICs wurden nicht gefunden</li>
+        <li>#2634176: AICs konnten sich überschneiden</li>
+    </ul>
+    <hr>
+    <h2><a name="v10"></a>2009-01-29: Version 1.0</h2>
+    <p>Neue Funktionen:</p>
+    <ul>
+        <li>Kommandozeilenunterstützung verbessert: Suche nach Sudokus mit bestimmten
+        Eigenschaften ist jetzt frei konfigurierbar (Optionen /c /s /lt /so hinzugefügt)</li>
+        <li>Neue Short-Cuts</li>
+        <li>#2530890: Mehr Ausgabeoptionen bei Batchverarbeitung (Optionen /vp /vs /vg hinzugefügt)</li>
+        <li>#2543821: Eigene Konsole für hodoku-x.x.x.exe hinzugefügt</li>
+        <li>#2541410: Bei Export kann '0' statt '.' verwendet werden</li>
+        <li>#2536950: Fensterlayout kann beim Beenden des Programms gespeichert werden</li>
+    </ul>
+    <p>Korrigierte Fehler:</p>
+    <ul>
+        <li>#2539619: Beim Wählen von Reitern im rechten Fenster wurde das Menü nicht entsprechend angepasst</li>
+        <li>#2537408: Klick auf einen Lösungsschritt nach Drücken von F12 warf eine Exception</li>
+        <li>#2536944: Hauptfenster war zu groß</li>
+        <li>#2533245: Numerischer Ziffernblock funktionierte nicht richtig</li>
+        <li>#2531752: Lesen einer Konfigurationsdatei passte die Lösungshierarchie nicht richtig an</li>
+        <li>#2530555: Forcing Chain Notation war fehlerhaft</li>
+        <li>#2512869: Nice Loop Notation war unvollständig für Continuous Nice Loops und AICs</li>
+        <li>#2512851: Hintergrundfarben wurden beim Löschen von Lösungen nicht richtig angepasst</li>
+    </ul>
+    <hr>
+    <h2><a name="v090"></a>2009-01-15: Version 0.9.0</h2>
+    <p>Dies ist die erste allgemein verfügbare Version von HoDoKu. Bis zur Freigabe der Version 1.0
+    werden keine neuen Funktionen implementiert werden. Die Version wurde intensiv gestestet
+    und läuft stabil.</p>
+    <hr>
+  <div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

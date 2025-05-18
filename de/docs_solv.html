@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Benutzerhandbuch (Kapitel 3: Solver konfigurieren)</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Benutzerhandbuch für HoDoKu - Kapitel 3: Solver konfigurieren">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsche version,version,geschichte,änderungen,english,lösungstechniken,tipps,fish,uniqueness,coloring,chains,als,wings,subsets">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu ul li ul li.mDocsSolv a, #menu ul li ul li.mDocsSolv a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+        <li><ul class="sub1">
+                <li class="mDocsIntro"><a href="docs_intro.html">Einleitung</a></li>
+                <li class="mDocsPlay"><a href="docs_play.html">Spielen</a></li>
+                <li class="mDocsSolv"><a href="docs_solv.html">Solver</a></li>
+                <li class="mDocsCre"><a href="docs_cre.html">Puzzles erzeugen</a></li>
+                <li class="mDocsFAS"><a href="docs_fas.html">Alle Lösungsschritte</a></li>
+                <li class="mDocsSol"><a href="docs_sol.html">Lösungswege</a></li>
+                <li class="mDocsRef"><a href="docs_ref.html">Referenz</a></li>
+    </ul></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/docs_solv.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/docs_solv.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Kapitel 3: Solver konfigurieren</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#strategy">Lösungsstrategie</a></li>
+                <li><a href="#en_disable">Lösungstechniken (de-)aktivieren</a></li>
+        <li><a href="#change_order">Reihenfolge der Lösungstechniken ändern</a></li>
+        <li><a href="#examples">Zweideutigkeiten und Beispiele</a></li>
+        <li><a href="#progress">Fortschrittsmaß</a></li>
+        <li class="ni"><ul>
+            <li><a href="#progress_1">Ausdrücke und Definitionen</a></li>
+            <li><a href="#progress_2">Lösen bis</a></li>
+        </ul></li>
+        <li><a href="#backdoor">Suche nach Hintertüren</a></li>
+        <li><a href="#options">Optionen für Lösungstechniken</a></li>
+    </ul>
+    <hr>
+
+    <h1><a name="strategy"></a>Lösungsstrategie</h1>
+    <p>Der interne Solver von HoDoKu verwendet dieselbe prinzipielle Lösungsstrategie
+    wie die Solver der meisten anderen Sudokuprogramme auch. Für die verfügbaren Lösungstechniken
+    ist eine Reihenfolge definiert. Der Solver probiert jetzt eine Technik nach der
+    anderen in genau dieser Reihenfolge aus. Sobald er einen möglichen Lösungsschritt
+    findet, führt er ihn aus und beginnt die Suche wieder mit der ersten Technik.</p>
+    <p>Die Reihung der Techniken basiert auf ihrem Schwierigkeitsgrad (leichtere
+    Techniken vor schwereren). Wie schwer eine Technik wirklich ist, ist natürlich
+    oft genug Ansichtssache, daher bietet HoDoKu die Möglichkeit, die Reihenfolge
+    der Lösungstechniken nach Belieben zu ändern (siehe <a href="#change_order">unten</a>).</p>
+    <p>Die Folge dieser Strategie ist, dass der Solver niemals eine komplizierte
+    Technik verwendet, wenn noch eine einfachere verfügbar ist. Das bedeutet wiederum,
+    dass er nur sehr selten die kürzest mögliche Lösung findet. Im Normalfall wird
+    die Lösung mit den einfachsten Techniken gefunden, unabhängig davon, wie oft diese
+    Techniken angewendet werden müssen.</p>
+    <p>Die Standardreihenfolge kann unter "Bearbeiten|Einstellungen|Solver" nach Drücken
+    von "Zurücksetzen" eingesehen werden. Mit Version 2.0 von HoDoKu listet dieser
+    Dialog 91 verschiedene Techniken, von denen einige allerdings zur selben Familie
+    gehören (z.B. allein 42 verschiedene Fish-Varianten). Andere Techniken haben nur
+    einen Eintrag in der Liste, können aber unterschiedliche Lösungsschritte produzieren
+    (der Eintrag "Nice Loops/AIC" kann z.B. "Discontinuous Nice Loops", "Continuous Nice Loops"
+    und "AICs" erzeugen).</p>
+    <hr>
+
+    <h1><a name="en_disable"></a>Lösungstechniken (de-)aktivieren</h1>
+    <img class="scr_l" src="img/scrs1.png" alt="Screenshot: Standard order of solver steps">
+    <p>Lösungstechniken können aktiviert oder deaktiviert werden. Eine deaktivierte Technik
+    wird vom Solver nicht angewendet.</p>
+    <p>Einige Techniken benötigen für die Suche sehr viel Zeit und sind daher standardmäßig
+    deaktiviert (z.B. alle größeren Fisch-Typen). Werden solche Techniken aktiviert, kann
+    die Zeit, die der Solver zum Lösen eines Sudokus benötigt, sehr stark ansteigen.</p>
+    <p>Techniken, die dem Spieler nicht besonders liegen, können natürlich ebenso deaktiviert
+    werden (sie werden dann auch vom Hinweis-System nicht angeboten). Eine Technik ein- oder
+    auszuschalten benötigt zwei Arbeitsschritte: Zunächst muss die Technik angeklickt werden,
+    damit sie hervorgehoben wird. HoDoKu füllt die Eingabeelemente unter "Eigenschaften
+    Lösungschritt" mit den Daten der Technik. Sobald eine Technik hervorgehoben ist,
+    schalten weitere Klicks auf die Zeile die Checkbox ein bzw. aus.</p>
+    <p>Alle Änderungen, die in diesem Dialog durchgeführt werden, werden bei Programmende
+    automatisch in eine Konfigurationsdatei gespeichert (siehe
+    <a href="docs_play.html#save_load">Konfigurationen und Sudokus speichern/laden</a>).</p>
+    <p>Klick auf den "Baum"-Knopf oberhalb der Liste mit den Lösungstechniken schaltet die Anzeige
+    in den Kategorie-Modus. Techniken werden als Baum nach Kategorien gruppiert angezeigt. Das macht
+    es einfach, ganze Gruppen von Techniken mit einem Klick ein- oder auszuschalten (z.B. alle
+    Chains oder alle Mutant Fische). Die Reihenfolge der Techniken (siehe unten) kann in der
+    Baumansicht nicht verändert werden.</p>
+    <hr class="clear">
+
+    <h1><a name="change_order"></a>Reihenfolge der Lösungstechniken ändern</h1>
+    <p>Um die Reihenfolge der Lösungstechniken zu ändern muss ebenfalls die
+    entsprechende Technik angeklickt werden. Sobald sie hervorgehoben wurde, können
+    die Knöpfe "Nach oben" und "Nach unten" dazu verwendet werden die Position der
+    Technik in der Liste zu verändern.</p>
+    <p>Achtung: Wird die Reihenfolge der Lösungstechniken geändert, kann das zu
+    einer völlig anderen Lösung führen und damit auch die Bewertung des Sudokus
+    verändern (siehe <a href="docs_cre.html#rating">Bewertung und Schwierigkeitsstufen</a>).</p>
+    <p>Andererseits wirken sich Änderungen der Lösungsreihenfolge nicht nur auf
+    den Solver, sondern auch auf das Hinweis-System aus. Techniken, die dem
+    Spieler besonders liegen, sollten daher in der Liste weiter nach oben
+    verschoben werden. Unbeliebte Techniken sollten besser deaktiviert werden.
+    Soll eine Technik nur als letzter Strohhalm zum Einsatz kommen, sollte sie ans
+    Ende der Liste verschoben werden.</p>
+    <hr>
+
+    <h1><a name="examples"></a>Zweideutigkeiten und Beispiele</h1>
+    <p>Viele Techniken existieren unter mehr als einem Namen. Ein Skyscraper
+    beispielsweise ist sowohl ein Turbot Fish als auch eine X-Chain. Außerdem kann er
+    als Kombination zweier Sashimi X-Wings gesehen werden. Einige Empty Rectangles
+    können ebenso Turbot Fishes oder Finned Mutant X-Wings sein.</p>
+    <p>Durch Verändern der Reihenfolge bzw. (de-)aktivieren von Lösungsschritten
+    kann daher erreicht werden, dass bestimmte Schritte nur unter einem bestimmten
+    Namen gelistet werden. Als Beispiel sollen die folgenden Techniken in ihrer
+    Standardreihenfolge dienen:</p>
+    <ul>
+        <li>2-String-Kite</li>
+        <li>Skyscraper</li>
+        <li>Turbot Fish</li>
+        <li>Empty Rectangle</li>
+    </ul>
+    <p>Empty Rectangles werden nur angezeigt, wenn in der Box, die das ER enthält,
+    mindestens drei Kandidaten gesetzt sind. ERs mit nur zwei Kandidaten können
+    über eine Option aktiviert werden. Da solche ERs aber immer auch Turbot Fishes sind
+    und Turbot Fish vor Empty Rectangle kommt, werden diese Schritte immer als Turbot Fish
+    gelistet und die oben genannte Option hat scheinbar keinerlei Effekt. Wenn man
+    wirklich ERs mit zwei Kandidaten als ERs gelistet sehen will, muss entweder Empty
+    Rectangle vor Turbot Fish geschoben werden oder Turbot Fish muss ganz deaktiviert werden.
+    Ebenso bewirkt das Verschieben von Turbot Fish vor 2-String-Kite oder Skyscraper,
+    dass diese Techniken nicht mehr vorkommen, da alle möglichen Eliminierungen bereits
+    vom Turbot Fish Code erkannt werden.</p>
+    <hr>
+
+    <h1><a name="progress"></a>Fortschrittsmaß</h1>
+    <h2><a name="progress_1"></a>Ausdrücke und Definitionen</h2>
+    <img class="scr_l" src="img/scrs3.png" alt="Screenshot: Fortschrittsmaß">
+    <p>Lösungsschritte können danach beurteilt werden, wie weit sie die Lösung des Sudokus
+    voranbringen. Das wird als "Fortschrittsmaß" des Lösungsschritts bezeichnet. Um dieses
+    Fortschrittsmaß zu berechnen, wird das Sudoku mit einem konfigurierbaren Set an Techniken
+    gelöst. Der Screenshot zeigt den Konfigurationsdialog für diese Techniken. Techniken können
+    nur gewählt werden, wenn ihr Schwierigkeitsgrad maximal "Schwer" ist. Muss unbedingt eine
+    "Unfaire" oder "Extreme" Technik gewählt werden, muss zuerst ihr Schwierigkeitsgrad
+    angepasst werden.</p>
+    <p>In der Listenansicht kann auch die Reihenfolge der Techniken unabhängig von der Reihenfolge
+    im normalen Solver geändert werden.</p>
+    <p>Um die Konfiguration weiter zu vereinfachen stehen mehrere Standardeinstellungen zur Verfügung:</p>
+    <ul class="clear">
+        <li>Default: Singles, Intersections und Subsets</li>
+        <li>Mittel + Schwer: Alle Schritte, die als "Mittel" oder "Schwer" eingestuft sind</li>
+        <li>Mittel: Alle Schritte, die als "Mittel" eingestuft sind</li>
+        <li>SSTS (Simple Sudoku Technique Set): Full House, Naked Single, Hidden Single,
+        Locked Pair, Naked Pair, Locked Candidates, Locked Triple, Naked Triple,
+        Naked Quadruple, Hidden Pair, X-Wing, Swordfish, Simple Colors,
+        Multi Colors, Hidden Triple, XY-Wing, Hidden Quadruple (in der oben angegebenen Reihenfolge).
+        Diese Auswahl an Techniken wird in vielen Sudoku-Foren verwendet, um ein Sudoku bis zu einem
+        "interessanten" Zustand zu lösen</li>
+    </ul>
+    <p>Das Fortschrittsmaß für einen Lösungsschritt besteht aus drei unabhängigen Werten:</p>
+    <ul>
+        <li>Anzahl direkter Singles: Anzahl an Singles, die verfügbar sind, nachdem der Schritt ausgeführt wurde,
+        ohne dass andere Schritte notwendig sind</li>
+        <li>Anzahl Singles: Gesamtanzahl an Singles nach Anwendung des Schrittes und unter Verwendung des
+        gesamten Sets an Techniken für das Fortschrittsmaß</li>
+        <li>Score: Der Score aller Schritte (nur Fortschrittsmaß) nach Anwendung des Lösungsschritts. Kann
+        das Sudoku nicht gelöst werden, wird der Score für "Gebe auf" nicht mitgerechnet</li>
+    </ul>
+    <h2><a name="progress_2"></a>Lösen bis</h2>
+    <p>Die Einstellungen in diesem Dialog werden auch von der "Lösen bis"-Funktion im Hinweis-Bereich
+    verwendet. Wird dieser Knopf gedrückt, wird die normale Lösungsstrategie angewendet. Wenn die jeweils nächste
+    gefundene Technik als Fortschrittsmaß-Technik definiert ist, wird der Lösungsschritt automatisch angewendet
+    und der nächste Schritt wird gesucht. Der Prozess stoppt, sobald die erste Technik gefunden wurde,
+    die hier nicht gewählt ist.</p>
+    <hr class="clear">
+
+    <h1><a name="backdoor"></a>Suche nach Hintertüren</h1>
+    <img class="scr_l" src="img/scrs4.png" alt="Screenshot: Backdoor search dialog">
+    <p>Die meisten Sudokus, auch ganz schwere, haben eine oder mehrere Hintertüren: Eine Hintertür
+    ist eine Zelle oder eine Kombination aus Zellen, die, wenn gesetzt, die Lösung auf Singles
+    reduziert. Die meisten Sudokus haben Hintertüren, die nur aus einer einzigen Zelle bestehen.
+    Extrem schwere Sudokus benötigen zwei Zellen um leicht zu werden. Das berühmte
+    <a href="show_exampleff1a.html?file=eastermonster&amp;tech=Backdoors">Easter Monster</a>
+    (von JPF im April 2007 im <a href="http://forum.enjoysudoku.com/">New Sudoku Player's Forum</a> gepostet)
+    benötigt sogar drei bestimmte Zellen, bevor es sich mit Singles lösen lässt.</p>
+    <p>HoDoKu kann verschiedene Typen von Hintertüren berechnen: Hintertüren für Zellen (sowohl
+    mit Singles als auch mit den Lösungsschritten für das Fortschrittsmaß) und Hintertüren
+    für Kandidaten oder Kombinationen von Kandidaten.</p>
+    <p>Bei der Suche werden zunächst Einzelzellen getestet. Können keine Hintertüren gefunden werden,
+    wird die Suche mit Zellpaaren und wenn nötig auch mit Dreierkombinationen fortgesetzt. Diese
+    Suche kann unter Umständen sehr lange dauern.</p>
+    <p>Wenn nach Kandidaten-Hintertüren gesucht wird, kann die Suchtiefe mit einer Combobox eingestellt
+    werden. Wie bei den Zellen stoppt die Suche, sobald Hintertüren gefunden wurden. Da es normalerweise
+    wesentlich mehr Kandidaten als ungelöste Zellen gibt, bedeutet eine Suchtiefe von 3, dass HoDoKu
+    eine enorme Anzahl an Kandidatenkombinationen probieren muss, was naturgemäß auch sehr lange dauert.</p>
+    <hr class="clear">
+
+    <h1><a name="options"></a>Optionen für Lösungstechniken</h1>
+    <p>Jede Lösungstechnik ist einem Schwierigkeitsgrad zugeordnet ("Level") und hat einen
+    Score. Der Sinn dieser Eigenschaften wird detailliert in Kapitel 4: <a href="docs_cre.html#rating">
+    Bewertung und Schwierigkeitsstufen</a> erklärt. Zusätzlich kann das Verhalten einiger Techniken
+    mit den Optionen in "Bearbeiten|Einstellungen|Lösungsschritte" geändert werden:</p>
+    <img class="scr_l" src="img/scrs2.png" alt="Screenshot: Standard order of solver steps">
+    <p class="clear">Fische allgemein (Optionen beeinflussen alle Fisch-Typen außer Kraken Fish):</p>
+    <ul>
+        <li><b>Maximale Anzahl Fins:</b> Maximale Anzahl an Fins ("Flossen"), die bei der Suche nach
+        Finned Fish zugelassen ist. Obwohl eine größere Anzahl an Flossen möglich ist, ist
+        es sehr unwahrscheinlich, dass ein solcher Fisch Eliminierungen bewirken kann
+        (bei einem Finned Fish muss der eliminierte Kandidat alle Flossen sehen). Eine Erhöhung
+        dieses Wertes bewirkt eine drastische Vergrößerung der Laufzeit der Fischsuche.</li>
+        <li><b>Maximale Anzahl Endo-Fins:</b> Maximale erlaubte Anzahl an Endo-Fins bei der
+        Fischsuche. Eine große Anzahl an Endo-Fins benötigt speziell bei der Suche nach großen
+        Mutant Fischen extrem lange Rechenzeiten ohne deutlich bessere Ergebnisse zu erzielen.</li>
+        <li><b>Anzeigetyp:</b> "Normal" zeigt Fische wie in den Versionen vor 2.0 an. "Zahlen"
+        und "Zellen" geben zusätzliche Informationen über die Architektur des Fisches.</li>
+        <li><b>Templates prüfen:</b> Templates sind eine Möglichkeit zu prüfen, ob Techniken,
+        die sich nur auf eine Ziffer beziehen, prinzipiell noch Eliminierungen bewirken können.
+        Achtung: Ein negativer Template-Check garantiert, dass kein in HoDoKu implementierter
+        Fisch-Typ (außer Kraken) eine Eliminierung liefern kann. Das Gegenteil ist allerdings
+        nicht notwendigerweise wahr.</li>
+        <li><b>Nur ein Fisch pro Eliminierung:</b> Wenn gewählt wird für jede mögliche Kombination
+        an Eliminierungen jeweils nur der kleinste verfügbare Fisch angezeigt.</li>
+    </ul>
+    <p>Kraken Fische:</p>
+    <ul>
+        <li><b>Typ:</b> Der Typ des im Kraken Fisch enthaltenen Fisches (Basic, Basic und Franken
+        oder alle Fischtypen).</li>
+        <li><b>Maximale Anzahl Fins:</b> Maximale Anzahl an Fins für den Kraken Fisch.</li>
+        <li><b>Max. Anzahl Endo-Fins:</b> Maximale Anzahl an Endo-Fins für den Kraken Fisch.</li>
+        <li><b>Maximale Größe:</b> Maximale Anzahl an Base/Cover-Sets für den Fisch.</li>
+    </ul>
+    <p>Chains allgemein (Optionen beeinflussen X-Chains, XY-Chains und Remote Pairs):</p>
+    <ul>
+        <li><b>Maximale Chainlänge:</b> Maximale Anzahl an Links in einer Chain (Achtung:
+        eine XY-Chain mit fünf Zellen hat neun Links).</li>
+        <li><b>Maximale Nice-Loop-Länge:</b> Diese Option hat keinerlei Auswirkungen mehr
+        und wird in späteren Versionen von HoDoKu entfernt werden.</li>
+    </ul>
+    <p>Tabling allgemein (Optionen beeinflussen Nice Loops, AICs, Forcing Chains/Nets und Kraken Fish):</p>
+    <ul>
+        <li><b>Anzahl Einträge:</b> maximale Anzahl an möglichen Auswirkungen pro Voraussetzung.
+        Eine niedrige Zahl in diesem Feld bewirkt, dass weniger Chains gefunden werden können.
+        Eine große Zahl vergrößert auch HoDoKus Speicherbedarf und verlangsamt die Ausführung
+        des Solvers.</li>
+        <li><b>Netztiefe:</b> Legt fest, wie weit bei einer Netzsuche in die Zukunft
+        geschaut werden soll. Je größer diese Nummer ist, desto komplizierter werden
+        auch die gefundenen Forcing Nets und die Ausführungszeit steigt (das führt
+        allerdings nicht notwendigerweise zu mehr Eliminierungen).</li>
+        <li><b>Nur eine Chain pro Eliminierung:</b> Wenn gewählt, werden Chains nur dann eingeschrieben,
+        wenn für diese Eliminierung noch keine Chain existiert oder wenn die existierende
+        Chain länger ist als die neue.</li>
+        <li><b>ALS in Chains erlauben:</b> ALS als Knoten in Chains vergrößern zwar die Anzahl
+        verfügbarer Chains, benötigen jedoch auch viel Rechenzeit bei der Suche. Außerdem
+        existieren für die meisten der möglichen zusätzlichen Chains äquivalente ALS-Techniken
+        (ALS-XZ, ALS-XY oder ALS Chains).</li>
+    </ul>
+    <p>Sonstiges:</p>
+    <ul>
+        <li><b>ERs mit zwei Kandidaten erlauben:</b> Wenn diese Option nicht gewählt ist,
+        werden Empty Rectangles nur gefunden, wenn sie mindestens zwei Kandidaten im Block,
+        der das ER enthält, besitzen. ERs mit nur zwei Kandidaten werden als Turbot Fish
+        oder als X-Chain gelistet.</li>
+        <li><b>'0' für Zwischenablage:</b> Verwendet '0' statt '.' beim Export von Sudokus
+        in die Zwischenablage.</li>
+        <li><b>Duals/Siamese erlauben:</b> Erlaubt das Finden von Dual Empty Rectangles,
+        Dual 2-String-Kites und Siamese Fish. Die Fähigkeiten des Solvers werden dadurch
+        nicht beeinflusst: Alle Duals/Siamese Fishes werden auch als zwei
+        getrennte Lösungsschritte gefunden.</li>
+        <li><b>Fehlende Kandidaten in URs:</b> Wenn gewählt, muss das UR nicht komplett sein
+        (es müssen nicht in allen UR-Zellen alle UR-Kandidaten vorhanden sein, siehe
+        <a href="tech_ur.html#umc">Unique Rectangles mit fehlenden Kandidaten</a>).</li>
+    </ul>
+    <p>ALS allgemein:</p>
+    <ul>
+        <li><b>ALS-Überlappungen erlauben:</b> Ab Version 1.2 sind Überlappungen zwischen
+        nicht benachbarten ALS in ALS Chains generell erlaubt. Diese Option erlaubt zusätzlich
+        Überlappungen zwischen benachbarten ALS (führt zu drastisch erhöhten Rechenzeiten,
+        produziert jedoch auch interessante Lösungsschritt-Varianten).</li>
+        <li><b>Nur eine Technik pro Eliminierung:</b> Nimmt für jede Kombination von Eliminierungen
+        jeweils nur den einfachsten verfügbaren ALS-Schritt (genauer: Den Schritt mit den wenigsten
+        ALS-Zellen insgesamt).</li>
+    </ul>
+    <hr class="clear">
+
+<div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

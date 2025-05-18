@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Benutzerhandbuch (Kapitel 4: Sudokus erzeugen)</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Benutzerhandbuch für HoDoKu - Kapitel 4: Sudokus erzeugen">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsche version,version,geschichte,änderungen,english,lösungstechniken,tipps,fish,uniqueness,coloring,chains,als,wings,subsets">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu ul li ul li.mDocsCre a, #menu ul li ul li.mDocsCre a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+        <li><ul class="sub1">
+                <li class="mDocsIntro"><a href="docs_intro.html">Einleitung</a></li>
+                <li class="mDocsPlay"><a href="docs_play.html">Spielen</a></li>
+                <li class="mDocsSolv"><a href="docs_solv.html">Solver</a></li>
+                <li class="mDocsCre"><a href="docs_cre.html">Puzzles erzeugen</a></li>
+                <li class="mDocsFAS"><a href="docs_fas.html">Alle Lösungsschritte</a></li>
+                <li class="mDocsSol"><a href="docs_sol.html">Lösungswege</a></li>
+                <li class="mDocsRef"><a href="docs_ref.html">Referenz</a></li>
+    </ul></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/docs_cre.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/docs_cre.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Kapitel 4: Sudokus erzeugen</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#rating">Bewertung und Schwierigkeitsstufen</a></li>
+        <li><a href="#training">Erzeugen von Sudokus im Lern- oder Übungsmodus</a></li>
+        <li><a href="#create">Sudokus mit bestimmten Lösungstechniken erzeugen</a></li>
+        <li><a href="#batch">Sudokus im Batchbetrieb erzeugen</a></li>
+        <li><a href="#sources">Quellen für Sudokus</a></li>
+    </ul>
+    <hr>
+
+    <h1><a name="rating"></a>Bewertung und Schwierigkeitsstufen</h1>
+    <p>HoDoKus Bewertungssystem ist hauptsächlich als Tool zum Ausfiltern bestimmter
+    Sudokutypen gedacht. Anders als die Bewertungssysteme vieler anderer
+    Sudokuprogramme ist es frei konfigurierbar und kann daher auch kein absolutes
+    Maß für die Schwierigkeit eines Sudokus geben (falls das überhaupt möglich ist).
+    Für konstante Bewertungen sind viele andere Programme frei verfügbar (z.B.
+    <del><a href="http://diuf.unifr.ch/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</a></del> <b>[toter Link]</b>).</p>
+    <img class="scr_l" src="img/scrcre1.png" alt="Screenshot: Solver step attributes">
+    <p>Jede Lösungstechnik hat in HoDoKu zwei Eigenschaften:</p>
+    <ul class="nfloat">
+        <li>Level</li>
+        <li>Score</li>
+    </ul>
+    <p>Der "Level" ordnet die Technik einer der fünf Schwierigkeitsgrade in HoDoKu zu
+    (Leicht, Mittel, Schwer, Unfair, Extrem). Der Schwierigkeitsgrad eines Sudokus
+    kann nicht kleiner sein als der Schwierigkeitsgrad des schwersten in der Lösung
+    enthaltenen Schrittes (er kann allerdings größer sein, siehe unten). Der "Score"
+    aller Schritte in der Lösung wird einfach zusammengezählt und ergibt den Score des
+    gesamten Sudokus.</p>
+    <p>Um die Eigenschaften einer Technik ändern zu können muss man auf die
+    entsprechende Zeile in der Liste klicken. Der Bereich "Eigenschaften Lösungsschritt"
+    wird dann mit den passenden Daten gefüllt, die nun geändert werden können.
+    Änderungen der Eigenschaften von Lösungstechniken können natürlich die Bewertung
+    aller Sudokus verändern, die diese Techniken enthalten.</p>
+    <img class="scr_l" src="img/scrcre2.png" alt="Screenshot: Level step attributes">
+    <p>Schwierigkeitsgrade haben einen minimalen und einen maximalen Score zugewiesen
+    (der minimale Score ist um eins größer als der maximale Score des nächstniedrigeren Grades).
+    Der Eingabedialog unter "Bearbeiten|Einstellungen|Allgemein" kann zum Setzen der
+    Maximalscores für die einzelnen Grade verwendet werden (Der Maximalscore für
+    "Extrem" ist unendlich, "Unvollständig" ist kein Score zugewiesen). Die Scores
+    der Schwierigkeitsgrade werden beim Bewerten eines Sudokus berücksichtigt. Wie das geschieht,
+    hängt davon ab, ob ein neues Sudoku erzeugt oder ein bestehendes bewertet werden soll:</p>
+    <ul class="nfloat">
+        <li>Ist der Score des Sudokus größer als der Score des Schwierigkeitsgrades
+        des schwierigsten Lösungsschritts, wird der Schwierigkeitsgrad des Sudokus
+        in beiden Fällen durch den Score des Sudokus bestimmt (Sudokus mit vielen
+        schweren Lösungsschritten sind schwieriger als solche mit wenigen).</li>
+    </ul>
+    <ul class="clear">
+        <li>Gehört der Score des Sudokus zu einem Schwierigkeitsgrad, der kleiner ist
+        als der Grad des schwersten Lösungsschritts, wird der Grad des Lösungsschrittes
+        beibehalten. Soll jedoch ein Sudoku mit einem bestimmten Schwierigkeitsgrad erzeugt
+        werden und deutet der Score an, dass das Sudoku zu leicht ist, wird es verworfen.</li>
+    </ul>
+    <p>Die Farben der einzelnen Schwierigkeitsgrade (siehe Screenshot) werden bei der
+    Darstellung der Lösungsschritte in den Bereichen "Zusammenfassung" und "Lösungsweg"
+    verwendet, sie können beliebig angepasst werden.</p>
+    <hr class="clear">
+
+    <h1><a name="training"></a>Erzeugen von Sudokus im Lern- oder Übungsmodus</h1>
+    <p>Die Spielmodi "Lernen" und "Üben" (siehe <a href="docs_play.html#modes">Spielmodi</a>)
+    sind ideale Instrumente zum Erzeugen von Sudokus, die bestimmte Techniken enthalten.
+    "Modus|Lernen..." oder "Modus|Üben..." im Menü wählen, eine Technik auswählen und ein
+    neues Sudoku erzeugen. In beiden Modi wird das neue Sudoku mindestens eine Instanz
+    einer der gewählten Techniken enthalten. Im Modus "Lernen" wird das Sudoku automatisch
+    so weit gelöst, dass der Schritt direkt ausgeführt werden kann.</p>
+    <hr>
+
+    <h1><a name="create"></a>Sudokus mit bestimmten Lösungstechniken erzeugen</h1>
+    <p>Mit Hilfe des konfigurierbaren Bewertungssystems kann man leicht Sudokus
+    erzeugen, die bestimmte Lösungstechniken benötigen (diese Funktion ist hauptsächlich
+    für Techniken mit Schwierigkeitsgrad "Schwer" oder höher gedacht). Will man zum Beispiel
+    ein Sudoku erzeugen, das eine AIC enthält, kann man natürlich einfach zufällig
+    Sudokus mit Schwierigkeitsgrad "Unfair" (dem Standard für AICs) erzeugen und in der
+    Zusammenfassung kontrollieren, ob eine AIC vorkommt oder nicht.</p>
+    <p>Einfacher geht es folgendermaßen:</p>
+    <ul>
+        <li>AIC wird ein Schwierigkeitsgrad von "Mittel" und ein unrealistisch
+        hoher Score (z.B. 5000) zugewiesen.</li>
+        <li>Der Maximalscore von "Leicht" wird auf 5000 gesetzt.</li>
+        <li>Der Maximalscore von "Mittel" wird auf 20000 gesetzt, die Scores der
+        höheren Grade werden entsprechend angepasst.</li>
+        <li>Nun wird eine neues Sudoku mit Grad "Mittel" erzeugt.</li>
+    </ul>
+    <p>Warum funktioniert das? Es ist einfach unmöglich ein Sudoku zu erzeugen, das mit
+    den "normalen" mittleren Techniken auf einen Score von mehr als 5000 kommt ("Mittel"
+    enthält Singles, Locked Candidates, Paare und Trippel und ergibt normalerweise Scores
+    zwischen ungefähr 600 und 1200). Wenn das Sudoku eine schwere Technik außer AIC
+    (der jetzt ja als "Mittel" gilt) enthält, wird es als zu schwer verworfen. Die einzigen
+    Sudokus die "Mittel" sind und einen Score von mehr als 5000 haben, sind solche, die
+    mindestens eine AIC enthalten.</p>
+    <p>Es ist natürlich auch möglich, die Eigenschaften von mehr als einer Technik zu
+    verändern. Jedes neu erzeugte Sudoku wird dann mindestens eine dieser Techniken
+    enthalten.</p>
+    <p>Achtung: Die Strategie des Solvers wird durch die oben beschriebenen Änderungen
+    nicht beeinflusst. Wenn die gesuchte Technik in der Hierarchie weit unten steht,
+    ist die Wahrscheinlichkeit groß, dass ein an und für sich passendes Sudoku eine
+    andere nicht triviale Technik enthält und daher verworfen wird. Es wird daher empfohlen,
+    die gesuchten Techniken weiter nach oben zu verschieben.</p>
+    <hr>
+
+    <h1><a name="batch"></a>Sudokus im Batchbetrieb erzeugen</h1>
+    <p>HoDoKu kann auch im Batchbetrieb ausgeführt werden (siehe 
+    <a href="docs_ref.html#command_line">Kommandozeilenoptionen</a>).
+    Der Batchbetrieb kann unter anderem dazu verwendet werden, um Sudokus mit
+    bestimmten Lösungstechniken oder Schwierigkeitsstufen zu erzeugen. 
+    Die dafür relevanten Optionen sind /s /sc bzw. /s /sl.</p>
+    <p>/s weist HoDoKu an nach Sudokus zu suchen, /sc bestimmt, nach welchen Techniken
+    gesucht werden soll. Das Argument von /sc ist eine Reihe von Bezeichnern. Jeder
+    Bezeichner enthält den Namen einer Technik (die verwendeten Abkürzungen können mit /lt
+    aufgelistet werden), einen Sudoku-Typ und die gewünschte Menge an Eliminierungen
+    (die letzten beiden Angaben sind optional).</p>
+    <p>Der Sudoku-Typ gibt an, wie die gesuchte Technik in der Lösung angeordnet sein soll:</p>
+    <ul>
+        <li>:3 - nur Singles vor und nach der Technik erlaubt</li>
+        <li>:2 - SSTS vor und Singles nach der Technik erlaubt</li>
+        <li>:1 - SSTS vor und nach der Technik möglich</li>
+        <li>:0 - keine Einschränkungen (standard)</li>
+    </ul>
+    <p>SSTS steht für "Simple Sudoku Technique Set" und enthält Singles, Locked Candidates,
+    Hidden/Naked/Locked Subsets, X-Wing, Swordfish, Jellyfish, XY-Wing, Simple Colors
+    und Multi Colors (dieses Set an Techniken wird oft in Foren verwendet um Sudokus bis
+    zu dem Punkt zu lösen, an dem der Spaß beginnt).</p>
+    <p>Die gewünschte Anzahl an Eliminierungen muss mit einem '+' starten. Das '+' wird gefolgt
+    von einem Operator ('e' für gleich - "equals", 'l' für kleiner als - "less than" oder
+    'g' für größer als - "greater than").</p>
+    <p>Obwohl eine beliebige Menge an Technik-Bezeichnern in einem Batchlauf angegeben werden kann,
+    wird jedes erzeugte Sudoku nur eine dieser Techniken enthalten (ausgenommen SSTS-Techniken,
+    die natürlich in den SSTS-Teilen beliebig oft vorkommen können).</p>
+    <p>Die Kommandozeile für einen Batchlauf, der Sudokus, die Swordfishes enthalten, erzeugen soll,
+    wäre:</p>
+    <p><code>java -Xmx512m -jar hodoku.jar /s /sc bf3</code></p>
+    <p>oder</p>
+    <p><code>hodoku.exe /s /sc bf3</code></p>
+    <p>Die Kommandozeile für einen Batchlauf, der nur schwere Sudokus erzeugen soll, wäre:</p>
+    <p><code>java -Xmx512m -jar hodoku.jar /s /sl 2</code></p>
+    <p>oder</p>
+    <p><code>hodoku.exe /s /sl 2</code></p>
+    <p>/o kann benutzt werden um eine Ausgabedatei anzugeben, /f um die Optionen aus einer Datei
+    zu lesen und /c um eine beliebige Konfigurationsdatei zu verwenden (siehe 
+    <a href="docs_play.html#save_load">Konfigurationen und Sudokus speichern/laden</a>).
+    Mehr Optionen sind in der Referenz beschrieben.</p>
+    <hr>
+
+    <h1><a name="sources"></a>Quellen für Sudokus</h1>
+    <p>Wenn man sich das Erzeugen von Sudokus ersparen will, gibt es jede Menge guter
+    Sudoku-Sammlungen im Internet (die meisten spezialisieren sich allerdings auf schwere
+    Sudokus). Einige Beispiele:</p>
+    <dl>
+        <dt><a href="http://mapleta.maths.uwa.edu.au/~gordon/sudokumin.php"><del>http://mapleta.maths.uwa.edu.au/~gordon/sudokumin.php</a></del> [toter Link]</dt>
+        <dd>Gordon Royle's Sudokus mit nur 17 anfänglich gesetzten Zellen (siehe auch Links). Die meisten Sudokus sind nicht sehr schwer.</dd>
+        <dt><a href="http://www.setbb.com/sudoku/viewtopic.php?t=1432&amp;mforum=sudoku"><del>http://www.setbb.com/sudoku/viewtopic.php?t=1432&amp;mforum=sudoku</a></del> [toter Link]</dt>
+        <dd>Wapati's schwere Sudokus (können ohne Chains gelöst werden).</dd>
+        <dt><a href="http://forum.enjoysudoku.com/viewtopic.php?t=6291">http://forum.enjoysudoku.com/viewtopic.php?t=6291</a></dt>
+        <dd>Patterns Game Results: Enthält sehr viele Sudokus mit ganz unterschiedlichen Schwierigkeitstufen,
+        die jeweils alle gleich aussehen. Die letzte Zahl auf jeder Zeile ist die Bewertung
+        von Sudoku Explainer.</dd>
+        <dt><a href="http://www.setbb.com/sudoku/viewtopic.php?t=1480&amp;mforum=sudoku"><del>http://www.setbb.com/sudoku/viewtopic.php?t=1480&amp;mforum=sudoku</a></del> [toter Link]</dt>
+        <dd>Tarek's "Pearly6000" (sehr schwer).</dd>
+        <dt><a href="http://www.sudocue.net/top10000.sdm"><del>http://www.sudocue.net/top10000.sdm</a></del> [toter Link]</dt>
+        <dd>Eine Untermenge der top50000 (enthält nur die schwersten Sudokus aus der größeren Liste).</dd>
+        <dt><a href="http://magictour.free.fr/top1465">http://magictour.free.fr/top1465</a></dt>
+        <dd>Die top1465, eine andere sehr gute Sammlung mit schweren Sudokus.</dd>
+    </dl>
+    <hr>
+
+<div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

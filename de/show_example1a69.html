@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Skyscraper Beispiel</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="HoDoKu - Sudoku für Süchtige: Beispiel anzeigen">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsch,Lösungstechniken,Beispiel">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/show_example.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/show_example.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>HoDoKu Lösungstechnik-Index: Beispiel für "Skyscraper"</h1>
+    <p><img src="../examples/sk01.png" alt="Beispiel für Lösungstechniken"></p>
+    <h2>Originales Sudoku:</h2>
+    <p><code>...........19.2.6......679.9.2...6..37....95...5.....414...3..57.9.24......8.....
+</code></p>
+
+    <h2>Verwenden Sie die folgende Zeile um das Sudoku in HoDoKu zu laden:</h2>
+    <p><code>:0400:1:+6+9+7.....+2..19+72.6+3..+3..679.9+12...6.+737+4+2+6.95.+8+65+7.+9.+2414+8+6+93+2+757.9.24..+6..+68.+7..+9::117 118 134 135:
+</code></p>
+
+    <h2>Die folgende Darstellung kann per Zwischenablage in die meisten Sudoku-Programme eingefügt werden:</h2>
+    <pre>.-------------.------------------.---------------.
+
+| 6    9    7 | 1345  13458  158 | 1458  148  2  |
+
+| 45   58   1 | 9     7      2   | 458   6    3  |
+
+| 245  258  3 | 145   1458   6   | 7     9    18 |
+
+:-------------+------------------+---------------:
+
+| 9    1    2 | 345   3458   58  | 6     38   7  |
+
+| 3    7    4 | 2     6      18  | 9     5    18 |
+
+| 8    6    5 | 7     13     9   | 13    2    4  |
+
+:-------------+------------------+---------------:
+
+| 1    4    8 | 6     9      3   | 2     7    5  |
+
+| 7    35   9 | 15    2      4   | 138   138  6  |
+
+| 25   235  6 | 8     15     7   | 134   134  9  |
+
+&#039;-------------&#039;------------------&#039;---------------&#039;
+</pre>
+
+    <h2>Darstellung des Lösungsschrittes:</h2>
+    <pre>.-------------.---------------------.------------------.
+
+| 6    9    7 |  1345   13458  *158 | -1458  -148   2  |
+
+| 45   58   1 |  9      7       2   |  458    6     3  |
+
+| 245  258  3 | -145   -1458    6   |  7      9    *18 |
+
+:-------------+---------------------+------------------:
+
+| 9    1    2 |  345    3458    58  |  6      38    7  |
+
+| 3    7    4 |  2      6      *18  |  9      5    *18 |
+
+| 8    6    5 |  7      13      9   |  13     2     4  |
+
+:-------------+---------------------+------------------:
+
+| 1    4    8 |  6      9       3   |  2      7     5  |
+
+| 7    35   9 |  15     2       4   |  138    138   6  |
+
+| 25   235  6 |  8      15      7   |  134    134   9  |
+
+&#039;-------------&#039;---------------------&#039;------------------&#039;
+
+
+
+Skyscraper: 1 in r1c6,r3c9 (verbunden durch r5c69) =&gt; r1c78,r3c45&lt;&gt;1
+
+
+
+
+
+
+</pre>
+  <div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

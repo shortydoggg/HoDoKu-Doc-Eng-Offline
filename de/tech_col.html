@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Lösungsstrategien - Coloring (Färben) - Simple Colors, Multi Colors, Color Wrap, Color Trap</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Lösungsstrategien für Sudoku - Coloring (Färben) - Simple Colors, Multi Colors, Color Wrap, Color Trap">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsch,coloring,conjugate pair,simple colors,multi colors,color wrap,color trap,färben,einfaches Färben,mehrfaches färben">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu ul li ul li.mTechCo a, #menu ul li ul li.mTechCo a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+        <li><ul class="sub1">
+                <li class="mTechIntro"><a href="tech_intro.html">Einleitung</a></li>
+                <li class="mTechSi"><a href="tech_singles.html">Singles</a></li>
+                <li class="mTechIn"><a href="tech_intersections.html">Intersections</a></li>
+                <li class="mTechHi"><a href="tech_hidden.html">Hidden Subsets</a></li>
+                <li class="mTechNa"><a href="tech_naked.html">Naked Subsets</a></li>
+                <li class="mTechFi"><a href="tech_fishg.html">Fish (allgemein)</a></li>
+                <li class="mTechBa"><a href="tech_fishb.html">Basic Fish</a></li>
+                <li class="mTechFS"><a href="tech_fishfs.html">Finned/Sashimi Fish</a></li>
+                <li class="mTechCF"><a href="tech_fishc.html">Complex Fish</a></li>
+                <li class="mTechSD"><a href="tech_sdp.html">Single Digit Patterns</a></li>
+                <li class="mTechUn"><a href="tech_ur.html">Uniqueness</a></li>
+                <li class="mTechWi"><a href="tech_wings.html">Wings</a></li>
+                <li class="mTechMi"><a href="tech_misc.html">Sonstiges</a></li>
+                <li class="mTechCo"><a href="tech_col.html">Coloring</a></li>
+                <li class="mTechCh"><a href="tech_chains.html">Chains/Loops</a></li>
+                <li class="mTechAl"><a href="tech_als.html">ALS</a></li>
+                <li class="mTechLa"><a href="tech_last.html">Letzter Ausweg</a></li>
+    </ul></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/tech_col.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/tech_col.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Coloring (Färben)</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#sc">Simple Colors (Einfaches Färben) (Color Wrap/Color Trap)</a></li>
+        <li><a href="#mc">Multi Colors (Mehrfaches Färben)</a></li>
+<!--        <li class="ni"><ul>
+            <li><a href="#display_mode_1">Puzzle only view (standard)</a></li>
+            <li><a href="#display_mode_2">Summary view</a></li>
+        </ul></li> -->
+    </ul>
+    <p>Färben ist eine Einzelziffer-Strategie, die eine ganze Reihe von Varianten in
+    verschiedensten Schwierigkeitsgraden hervorgebracht hat. Zwei einfache Varianten
+    werden hier erklärt. Das Prinzip ist immer das gleiche: Man sucht nach Häusern,
+    in denen die zu färbende Ziffer nur noch in zwei Zellen gesetzt werden kann
+    (das Haus enthält einen <a href="tech_chains.html#strong_link">strong link</a>
+    für diese Ziffer). Im Coloring-Jargon bezeichnet man einen solchen strong link als
+    "Conjugate Pair". Den zwei Kandidaten des Conjugate Pairs werden zwei verschiedene
+    Farben zugewiesen (siehe <a href="docs_play.html#keyboard_2">Coloring</a> im
+    <a href="docs.html">Benutzerhandbuch</a>). Wenn das Färben abgeschlossen wurde,
+    wird das Gitter nach Widersprüchen durchsucht, die zu Eliminierungen führen können.</p>
+    <p>Wenn zwei verschiedene Farben in ein Gitter eingetragen wurden (nennen wir sie Farbe 1 und Farbe 2),
+    müssen entweder alle Zellen mit Farbe 1 gesetzt und alle Zellen mit Farbe 2 nicht gesetzt sein oder
+    umgekehrt. Es ist schlicht unmöglich, dass zwei Zellen mit verschiedenen Farben zur selben Zeit
+    gesetzt sind. Wenn mehr als zwei Farben verwendet werden, gilt das oben gesagte für jedes
+    Farbpaar extra.</p>
+    <p>Alle Färben-Varianten sind einfache Methoden zum Auffinden von <a href="tech_chains.html">Chains</a>.
+    Färben ist normalerweise einfacher als das Gitter nach Chains zu durchsuchen.</p>
+    <hr>
+
+    <h1><a name="sc"></a>Simple Colors (Einfaches Färben)</h1>
+    <p>Einfaches Färben verwendet nur zwei verschiedene Farben. Man beginnt mit einer Zelle eines Conjugate
+    Pairs und weist Farben zu, bis keine gefärbte Zelle mehr zu einem noch nicht komplett gefärbten
+    Conjugate Pair gehört. Danach wird das Gitter nach zwei möglichen Widersprüchen durchsucht:</p>
+    <ol>
+        <li>Eine ungefärbte Zelle, die Zellen mit unterschiedlichen Farben sieht (Color Trap):
+        Da alle Zellen mit derselben Farbe gesetzt oder nicht gesetzt sein müssen, muss eine der
+        zwei verschieden gefärbten Zellen gesetzt sein, und die ungefärbte Zelle kann
+        unmöglich die zu färbende Ziffer enthalten.</li>
+        <li>Zwei Zellen mit der selben Farbe sehen einander (Color Wrap): Alle Zellen mit dieser
+        Farbe sind entweder gesetzt oder nicht gesetzt. Alle gesetzt ist unmöglich
+        (da würde die selbe Ziffer zwei Mal im selben Haus vorkommen), also müssen alle falsch sein.</li>
+    </ol>
+    <a href='show_example14a8.html?file=sc01&amp;tech=Simple+Colors'><img class='scr_l' src='../examples/sc01.png' alt='Sudoku Lösungstechnik: Beispiel für Simple+Colors'></a>    <a href='show_exampledd96.html?file=sc02&amp;tech=Simple+Colors'><img class='scr_l' src='../examples/sc02.png' alt='Sudoku Lösungstechnik: Beispiel für Simple+Colors'></a>    <p>Das linke Beispiel zeigt einen Color Trap: Zelle r1c9 sieht r1c4 und r8c9 und diese beiden Zellen
+    haben unterschiedliche Farben. Kandidat 3 kann von r1c9 gelöscht werden. Das selbe Argument gilt für
+    r3c9 und r8c1.</p>
+    <p>Das rechte Beispiel zeigt einen Color Wrap: Filter wurden eingeschaltet, daher werden alle Zellen, die
+    einen Kandidaten 8 enthalten, grün gezeichnet (zwei dieser Zellen sind immer noch grün;
+    sie gehören zu keinem Conjugate Pair und sind daher auch nicht gefärbt). Das Färben startete bei
+    r1c6 und wurde fortgesetzt, bis kein weiterer strong link mehr gefunden werden konnte. Jetzt
+    betrachten wir Spalte 4: r2c4 und r4c4 haben beide dieselbe Farbe und sind im selben Haus.
+    8 kann von allen Zellen mit dieser Farbe eliminiert werden, was das Sudoku löst (Bedeutung:
+    es bleiben nur noch Singles).</p>
+    <hr>
+
+    <h1><a name="mc"></a>Multi Colors (Mehrfaches Färben)</h1>
+    <p>Multi Colors verwendet mehr als ein Farbenpaar zum Färben von nicht zusammenhängenden 
+    von Conjugate Pairs gebildeten Regionen. Wenn das Färben abgeschlossen wurde,
+    gibt es wieder zwei Situationen, die zu Eliminierungen führen können.</p>
+    <ol>
+        <li>Zwei gefärbte Zellen von verschiedenen Farbpaaren sind im selben Haus (sie bilden einen
+        <a href="tech_chains.html#weak_link">weak link</a>). Da sie sich ein Haus teilen, kann nur einer
+        von ihnen gesetzt sein (und das gilt auch für alle anderen Zellen mit diesen Farben). Es bedeutet aber
+        auch, dass entweder die entgegengesetzte Farbe des einen oder die des anderen Farbpaares gesetzt
+        werden muss. Der Färbe-Kandidat kann aus allen Zellen gelöscht werden, die mindestens zwei Zellen mit
+        diesen Farben sehen können.</li>
+        <li>Zwei Zellen mit derselben Farbe (nennen wir sie Farbe 1) sehen Zellen mit entgegengesetzten Farben eines
+        anderen Farbpaares. Eine der Zellen des anderen Farbpaares muss gesetzt sein (siehe <a href="#sc">Simple Colors</a>),
+        was bedeutet, dass eine der Zellen mit Farbe 1 falsch sein muss. Da aber alle Zellen mit derselben Farbe
+        den selben Zustand annehmen müssen, kann keine der Zellen mit Farbe 1 den Färbe-Kandidaten enthalten.</li>
+    </ol>
+    <p>Multi Colors sind gleich mächtig wie <a href="tech_chains.html#x">X-Chains</a>. HoDoKu unterstützt derzeit
+    nur zwei Farbpaare in seiner Multi Colors Implementation, es kann daher nicht für alle X-Chains der
+    äquivalente Multi Color-Spielzug gefunden werden.</p>
+    <a href='show_example367c.html?file=mc01&amp;tech=Multi+Colors'><img class='scr_l' src='../examples/mc01.png' alt='Sudoku Lösungstechnik: Beispiel für Multi+Colors'></a>    <a href='show_example9dee.html?file=mc02&amp;tech=Multi+Colors'><img class='scr_l' src='../examples/mc02.png' alt='Sudoku Lösungstechnik: Beispiel für Multi+Colors'></a>    <p>Das linke Beispiel zeigt Typ 1 für Kandidat 1: Es werden zwei Farbpaare verwendet. r1c5 hat Farbe 1a,
+    r1c7 hat Farbe 1b. r2c9 hat Farbe 2a und r5c9 hat Farbe 2b. r1c7 und r2c9 gehören zu verschiedenen
+    Farbpaaren, teilen sich aber dasselbe Haus (Block 3). Da nur einer dieser Kandidaten gesetzt werden kann
+    (es können auch beide nicht gesetzt werden!), müssen entweder alle Zellen mit Farbe 1a oder alle
+    Zellen mit Farbe 2b gesetzt sein (oder auch beides zugleich). Die Zellen r5c23 sehen
+    diese beiden Farben und können daher den Färbe-Kandidaten nicht enthalten.</p>
+    <p>Das rechte Beispiel zeigt Typ 2 für Kandidat 3 (wir verwenden die selben Farbnamen wir oben):
+    Zelle r6c2 (Farbe 1b) sieht Zelle r6c9 (Farbe 2b) und Zelle r8c6 (auch Farbe 1b) sieht Zelle
+    r2c6 (Farbe 2a). Da entweder alle Zellen mit Farbe 2a oder alle Zellen mit Farbe 2b wahr sein
+    müssen, muss entweder r6c2 oder r8c6 falsch sein. Da diese beiden Zellen aber dieselbe Farbe
+    haben, kann keine der Zellen mit dieser Farbe eine 3 enthalten.</p>
+    <hr>
+
+<div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

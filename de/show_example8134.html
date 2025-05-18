@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Alternate Inference Chain Type 2 Beispiel</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="HoDoKu - Sudoku für Süchtige: Beispiel anzeigen">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsch,Lösungstechniken,Beispiel">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/show_example.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/show_example.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>HoDoKu Lösungstechnik-Index: Beispiel für "Alternate Inference Chain Type 2"</h1>
+    <p><img src="../examples/aic202.png" alt="Beispiel für Lösungstechniken"></p>
+    <h2>Originales Sudoku:</h2>
+    <p><code>963.1.....7.3..........27..7.9.6..........5...3.....9.....3...25...86..3....71846
+</code></p>
+
+    <h2>Verwenden Sie die folgende Zeile um das Sudoku in HoDoKu zu laden:</h2>
+    <p><code>:0708:28:963.1....+27.3........+6.27+3.7.9.6.+3.......+35...3.....9.+6+8+7.3.+1+525..+286+9+73+3+9+2+571846::218 848:
+</code></p>
+
+    <h2>Die folgende Darstellung kann per Zwischenablage in die meisten Sudoku-Programme eingefügt werden:</h2>
+    <pre>.------------------.------------------.------------------.
+
+| 9    6     3     | 478    1    4578 | 24   28    458   |
+
+| 2    7     1458  | 3      459  4589 | 46   168   14589 |
+
+| 148  145   1458  | 6      459  2    | 7    3     14589 |
+
+:------------------+------------------+------------------:
+
+| 7    1245  9     | 148    6    458  | 3    128   148   |
+
+| 148  124   1468  | 14789  249  3    | 5    1268  1478  |
+
+| 148  3     14568 | 1478   245  4578 | 246  9     1478  |
+
+:------------------+------------------+------------------:
+
+| 6    8     7     | 49     3    49   | 1    5     2     |
+
+| 5    14    14    | 2      8    6    | 9    7     3     |
+
+| 3    9     2     | 5      7    1    | 8    4     6     |
+
+&#039;------------------&#039;------------------&#039;------------------&#039;
+</pre>
+
+    <h2>Darstellung des Lösungsschrittes:</h2>
+    <pre>.--------------------.------------------.--------------------.
+
+| 9     6      3     | 478    1    4578 | *24   *-28   458   |
+
+| 2     7      1458  | 3      459  4589 |  46    168   14589 |
+
+| 148   145    1458  | 6      459  2    |  7     3     14589 |
+
+:--------------------+------------------+--------------------:
+
+| 7    *1245   9     | 148    6    458  |  3    *12-8  148   |
+
+| 148   124    1468  | 14789  249  3    |  5     1268  1478  |
+
+| 148   3     *14568 | 1478   245  4578 | *246   9     1478  |
+
+:--------------------+------------------+--------------------:
+
+| 6     8      7     | 49     3    49   |  1     5     2     |
+
+| 5     14     14    | 2      8    6    |  9     7     3     |
+
+| 3     9      2     | 5      7    1    |  8     4     6     |
+
+&#039;--------------------&#039;------------------&#039;--------------------&#039;
+
+
+
+AIC 8- r1c8 -2- r1c7 =2= r6c7 =6= r6c3 =5= r4c2 =2= r4c8 -2 =&gt; r1c8&lt;&gt;2, r4c8&lt;&gt;8
+
+
+
+
+
+
+</pre>
+  <div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

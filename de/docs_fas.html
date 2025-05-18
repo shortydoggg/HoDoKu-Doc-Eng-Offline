@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Benutzerhandbuch (Kapitel 5: Alle möglichen Lösungsschritte finden)</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Benutzerhandbuch für HoDoKu - Kapitel 5: Alle möglichen Lösungsschritte finden">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsche version,version,geschichte,änderungen,english,lösungstechniken,tipps,fish,uniqueness,coloring,chains,als,wings,subsets">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu ul li ul li.mDocsFAS a, #menu ul li ul li.mDocsFAS a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+        <li><ul class="sub1">
+                <li class="mDocsIntro"><a href="docs_intro.html">Einleitung</a></li>
+                <li class="mDocsPlay"><a href="docs_play.html">Spielen</a></li>
+                <li class="mDocsSolv"><a href="docs_solv.html">Solver</a></li>
+                <li class="mDocsCre"><a href="docs_cre.html">Puzzles erzeugen</a></li>
+                <li class="mDocsFAS"><a href="docs_fas.html">Alle Lösungsschritte</a></li>
+                <li class="mDocsSol"><a href="docs_sol.html">Lösungswege</a></li>
+                <li class="mDocsRef"><a href="docs_ref.html">Referenz</a></li>
+    </ul></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/docs_fas.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/docs_fas.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Kapitel 5: Alle möglichen Schritte finden</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#intro">Einleitung</a></li>
+                <li><a href="#config">Konfiguration</a></li>
+        <li><a href="#ordering">Reihenfolge der Lösungsschritte</a></li>
+            </ul>
+    <hr>
+
+    <h1><a name="intro"></a>Einleitung</h1>
+    <p>Dieser Modus erlaubt es alle Lösungsschritte, die im aktuellen Zustand des
+    Sudokus enthalten sind, zu finden und durchzusehen. Der entsprechende Bereich
+    in der Oberfläche ist in drei Teile geteilt:</p>
+    <ul>
+        <li>"Suche konfigurieren": Enthält Kurzwahlschalter zum Ein- bzw. Ausschalten
+        der Techniken Forcing Chains, Forcing Nets und Kraken Fish sowie einen
+        Knopf zum Aufrufen des Konfigurationsdialogs</li>
+        <li>Die Liste mit den Lösungsschritten: Eine Baumansicht mit allen gefundenen Schritten</li>
+        <li>Unterer Bereich mit den Knöpfen "Alle Lösungsschritte finden" (macht auch genau das)
+        und "Zu Lösung hinzufügen" (siehe <a href="docs_sol.html#change">Lösungswege ändern</a>).</li>
+    </ul>
+    <img class="scr_l" src="img/scrfas1.png" alt="Screenshot: Find all steps panel">
+    <p>Ein Mausklick auf einen Lösungsschritt zeigt ihn im Sudoku an, wie immer wird
+    der dazugehörige Text in den Hinweis-Bereich geschrieben. Wechselt man zwischen den
+    verschiedenen Ansichten hin und her, kann es vorkommen, dass ein Lösungsschritt
+    zwar in der Liste unter "Alle möglichen Schritte" hervorgehoben wird, nicht aber
+    im Sudoku selbst. Den Schritt noch einmal anzuklicken ändert dabei nichts. Man muss
+    einen anderen Schritt auswählen, damit er im Sudoku sichtbar wird.</p>
+    <p>Standardmäßig sind alle Techniken außer Forcing Chains/Nets und Kraken Fish aktiviert.
+    Forcing Chains/Nets und Kraken Fish sind ausgeschaltet,
+    weil sie eine sehr große Menge an Lösungsschritten erzeugen, wenn einfache
+    Sudokus nach ihnen durchsucht werden. Für schwerere Sudokus, wo sie unter
+    Umständen notwendig wären, können sie leicht aktiviert werden.</p>
+    <p>Bitte beachten: Die Ansicht "Alle möglichen Schritte" wird nicht automatisch
+    mit dem Sudoku synchronisiert. Drückt man "Alle Lösungsschritte finden", sind alle
+    angezeigten Schritte für den aktuellen Zustand des Sudokus gültig, aber nichts hindert
+    einen daran, Änderungen im Sudoku vorzunehmen und anschließend einen zuvor
+    berechneten Lösungsschritt auszuwählen. Es besteht eine reelle Chance,
+    dass ein solcher Schritt mittlerweile nicht mehr gültig ist.</p>
+    <p>Um Unklarheiten zu vermeiden, sollten die Lösungsschritte immer neu
+    berechnet werden, bevor sie verwendet werden.</p>
+    <hr class="clear">
+
+    <h1><a name="config"></a>Konfiguration</h1>
+    <p>Der zur Funktion passende Konfigurationsdialog kann unter "Bearbeiten|Einstellungen|Alle möglichen Schritte"
+    gefunden werden.</p>
+    <img class="scr_l" src="img/scrfas2.png" alt="Screenshot: Find all steps configuration">
+    <p>Mit der Baumansicht auf der linken Seite kann ausgewählt werden, welche
+    Lösungstechniken in die Suche mit aufgenommen werden sollen.</p>
+    <p>Die Baumansicht enthält keine Fisch-Techniken (außer Kraken Fisch). Zur
+    Konfiguration der Fischsuche muss der Bereich "Fisch" auf der rechten Seite des
+    Dialogs verwendet werden.</p>
+    <ul class="nfloat">
+        <li><b>Fische suchen:</b> Schaltet die Fisch-Suche ein bzw. aus.</li>
+        <li><b>Typ:</b> Erlaubt die Wahl der Fisch-Typen, nach denen gesucht werden soll
+        (nur Basic, Basic und Franken oder alle Typen). Beachten Sie bitte, dass die Suche
+        nach den komplexeren Fischtypen sehr lange dauern kann.</li>
+        <li><b>Größe von/bis:</b> Erlaubt die Angabe, welche Fischgrößen gefunden werden
+        sollen. 3/3 sucht zum Beispiel nur Swordfishes.</li>
+        <li><b>Max. Fins:</b> Die maximale Anzahl an Flossen, für die gesucht werden soll.
+        Will man Finned/Sashimi Fische von der Suche ausschließen, muss hier '0' angegeben werden.</li>
+    </ul>
+    <ul class="clear">
+        <li><b>Max. Endo-Fins:</b> Wie "Max. Fins", aber für Endo-Fins (hat keine Auswirkungen
+        auf die Suche nach Basic-Fischen). Ein großer Wert führt normalerweise zu
+        sehr langen Suchdauern.</li>
+        <li><b>Templates prüfen: </b> Vor der Suche einen Template-Check durchführen
+        (siehe <a href="docs_solv.html#options">Optionen für Lösungstechniken</a>).</li>
+        <li><b>Kandidaten:</b> Druck auf den Knopf rechts öffnet einen Dialog, der es ermöglicht,
+        die Suche auf bestimmte Kandidaten einzuschränken.</li>
+    </ul>
+    <p>Der Konfigurationsbereich für "Kraken Fisch" hat ähnliche Einstellungen wie der für
+    normale Fische. Ein-/Ausschalten muss allerdings in der Baumansicht durchgeführt werden
+    und eine Template-Check ist nicht möglich, da ein Kraken Fisch andere Ziffern als
+    die Fisch-Ziffer eliminieren kann.</p>
+    <p>Das Abschnitt "ALS" enthält Optionen für ALS Chains:</p>
+    <ul>
+        <li><b>Chain-Länge: </b> Die maximale Anzahl an ALS in der ALS Chain. Größere
+        Werte erhöhen die Suchzeit drastisch.</li>
+        <li><b>Nur vorwärts:</b> Wenn gesetzt (Standardeinstellung), werden keine Rückwärtsglieder
+        in ALS Chains verwendet. Wird die Option ausgeschaltet, werden mehr Chains gefunden,
+        aber die Suchzeit kann extrem lang werden.</li>
+    </ul>
+    <hr class="clear">
+
+    <h1><a name="ordering"></a>Reihenfolge der Lösungsschritte</h1>
+    <p>Mit Hilfe der Knöpfe in der Werkzeugleiste können die Lösungsschritte verschieden angeordnet
+    werden. Die Knöpfe stellen Buchstaben dar, die die Sortierung bestimmen:</p>
+    <ul>
+        <li><b>D</b>irekte Singles: Die Schritte werden nach der Anzahl der durch sie
+        entstehenden direkten Singles sortiert (siehe <a href="docs_solv.html#progress">Fortschrittsmaß</a>)</li>
+        <li><b>S</b>ingles: Die Schritte werden nach der Gesamtzahl der unter Verwendung der im "Fortschrittsmaß"
+        definierten Schritte verfügbar werdenden Singles sortiert (siehe
+        <a href="docs_solv.html#progress">Fortschrittsmaß</a>)</li>
+        <li><b>C</b>ells (Zellen): Die Schritte werden nach Eliminierungen geordnet (Zellen und
+        Kandidaten in Zellen). Schritte, die mehr als einen Kandidaten eliminieren, werden ein Mal
+        für jeden Kandidaten angeführt</li>
+        <li><b>E</b>liminierungen: Die Schritte werden nach der Anzahl der Eliminierungen absteigend
+        sortiert. Erzeugen zwei Schritte die gleiche Anzahl an Eliminierungen, werden sie nach Typ
+        sortiert.</li>
+        <li><b>T</b>yp: Die Schritte werden nach Typ sortiert</li>
+    </ul>
+    <hr>
+
+    
+<div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Bibliotheken</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Bibliotheken für HoDoKu - ein Generator/Helfer/Analysator für Sudokus geschrieben in Java">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsche version,english,lösungstechniken,tipps,fish,uniqueness,coloring,chains,als,wings,subsets,regression test,bibliothek">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu li.mLibs a, #menu li.mLibs a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/libs.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/libs.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Libraries</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#libreg">Bibliothek für Regression-Tests</a></li>
+        <li><a href="#libex">Exemplar-Bibliothek</a></li>
+    </ul>
+    <hr>
+
+    <h1><a name="libreg"></a>Bibliothek für Regression-Tests</h1>
+    <p>Testen auf Regressionen ist immer schwierig und aufwendig, wenn die Tests nicht vollständig
+    automatisiert werden können. Ein Problem beim Testen vieler verschiedener Techniken besteht darin,
+    eine große Auswahl an Testfällen zu finden, die automatisch behandelt werden können.</p>
+    <p>In der Vergangenheit wurde einiges an Arbeit investiert um Bibliotheken von Testfällen
+    (bzw. Bibliotheken von Sudokus, die als Testfälle verwendet werden können) zusammenzustellen, z.B.
+    Ruuds <a href="http://forum.enjoysudoku.com/viewtopic.php?t=3834">Benchmark
+    Sudoku List</a>, Mike Barkers <a href="http://forum.enjoysudoku.com/viewtopic.php?p=32822#32822">zoo</a>,
+    RWs <a href="http://forum.enjoysudoku.com/viewtopic.php?t=3740">The Effortless Extremes thread</a>
+    oder tareks <a href="http://forum.enjoysudoku.com/viewtopic.php?t=5776">A Pure Jellyfish Collection</a>
+    (und diese Liste ist natürlich unvollständig).</p>
+    <p>Die meisten dieser Zusammenstellungen kann jedoch nicht für automatisierte Tests verwendet werden, 
+    weil sie von der verwendeten Solver-Strategie abhängen oder in verschiedenen Formaten vorliegen.
+    Ich habe daher eine eigene Sammlung von Testfällen zusammengestellt und ein Format entwickelt, das
+    einfaches Testen ermöglicht. Die meisten Testfälle wurden mit HoDoKu erzeugt, aber viele sind auch
+    aus Foren und Sammlungen aus dem Internet. Aufgrund der großen Anzahl an Testfällen (mehr als 1000
+    in Version 1.0 der Bibliothek) wurden bei den einzelnen Sudokus keine Referenzen angegeben.</p>
+    <p>Der Zweck dieser Bibliothek ist es, so viele Testfälle wie möglich für so viele verschiedene
+    Lösungstechniken wie möglich zu sammeln. Jeder Test belegt genau eine Zeile und testet eine
+    bestimmte Technik für eine bestimmte Menge an Kandidaten. Die einzige Anforderung an einen gültigen
+    Testfall besteht darin, dass es keine andere Instanz der getesteten Technik für die angegebenen Kandidaten
+    gibt, die zu einer anderen Platzierung oder zu anderen Eliminierungen führt.</p>
+    <p>Das Bibliotheksformat hat den zusätzlichen Vorteil, dass es ein komplettes PM-Grid enthält und den
+    Unterschied zwischen Angabe und vom Anwender gesetzten Zellen bewahrt (und dabei trotzdem nur eine Zeile
+    benötigt).</p>
+    <p>Ein besonderer Dank gilt dem MaNik-e Team für ihre Hilfe beim Kodieren der eigentlichen Testroutine.</p>
+
+    <h2>HoDoKu Bibliotheksformat</h2>
+    <p>Ein Test besteht aus einer Zeile mit sieben Feldern, die mit ":" getrennt werden. Format:</p>
+    <p>:&lt;Technik&gt;:&lt;Kandidat(en)&gt;:&lt;Angabe&gt;:&lt;gelöschte Kandidaten&gt;:&lt;Eliminierungen&gt;:&lt;gesetzte Zellen&gt;:&lt;Extra&gt;</p>
+    <dl>
+        <dt>&lt;Technik&gt;</dt>
+        <dd>Eine alphanumerische Zeichenkette, die die Technik bestimmt (für Werte siehe die Bibliotheksdatei).
+            Für einige Techniken existieren Varianten. Eine Variante beginnt mit einem Trennstrich
+            nach dem Code für die Technik, gefolgt von einer Nummer. Varianten können natürlich
+            bei Bedarf ignoriert werden. Besteht die Variante aus einem einfachen 'x', ist der Test ein
+            Fail-Case: Es darf keine Instanz der Technik gefunden werden.</dd>
+
+        <dt>&lt;Kandidat(en)&gt;</dt>
+        <dd>Der Kandidat (die Kandidaten), für den die Technik angewendet wird (siehe unten)</dd>
+
+        <dt>&lt;Angabe&gt;</dt>
+        <dd>Die gesetzten Zellen des Sudokus; ein '+' vor einer Ziffer bedeutet, dass der Wert
+            nicht zur Angabe gehört, sondern dass die Zelle vom Anwender gesetzt wurde (optional)</dd>
+
+        <dt>&lt;gelöschte Kandidaten&gt;</dt>
+        <dd>Kandidaten, die gelöscht werden müssen, nachdem die Zellen der Angabe gesetzt wurden.
+            &lt;givens&gt; und &lt;deleted candidates&gt; gemeinsam entsprechen einem PM-Grid, allerdings mit
+            dem Vorteil, dass der Unterschied zwischen Angabe und vom Anwender gesetzten Zellen erhalten
+            bleiben kann (Format siehe unten)</dd>
+
+        <dt>&lt;Eliminierungen&gt;</dt>
+        <dd>Kandidaten, die von der &lt;Technik&gt; im PM-Grid eliminiert werden können, falls vorhanden
+            (Format siehe unten)</dd>
+
+        <dt>&lt;gesetzte Zellen&gt;</dt>
+        <dd>Zellen, die von der &lt;Technik&gt; im PM-Grid gesetzt werden können, falls vorhanden
+            (Format siehe unten)</dd>
+
+        <dt>&lt;Extra&gt;</dt>
+        <dd>Kann zusätzliche Informationen für einzelne Techniken enthalten. Derzeit sind folgende Werte
+            definiert:
+            <ul>
+                <li>Chains/Loops: Die Länge der chain/loop in Anzahl Inferences</li>
+            </ul>
+        </dd>
+
+    </dl>
+
+
+    <h3>Format für Kandidaten/Eliminierungen/gesetzte Zellen</h3>
+    <p>&lt;Kandidat&gt;&lt;Zeile&gt;&lt;Spalte&gt;</p>
+    <p>&lt;Zeile&gt; und &lt;Spalte&gt; gehen von 1 bis 9; enthält ein Eintrag mehrere Instanzen,
+       werden sie mit Leerzeichen getrennt.</p>
+    <p>Beispiel: ":436 257:" bedeutet "r3c6&lt;&gt;4, r5c7&lt;&gt;2"</p>
+    <p>&lt;Eliminierungen&gt; und &lt;gesetzte Zellen&gt; können nicht gleichzeitig vorkommen.</p>
+    <p>Der Inhalt von &lt;Kandidaten&gt; hängt von der Technik ab:</p>
+    <ul>
+        <li>Für Singles, Forcing Chain/Net Verities: Der Kandidat, der gesetzt werden kann</li>
+        <li>Nice Loops/AIC, Forcing Chain/Net Contradictions, ALS, SDC: Der Kandidat, der eliminiert
+        werden kann</li>
+        <li>Alle anderen Techniken: Die im Lösungsschritt verwendeten Kandidaten</li>
+    </ul>
+    <h3>Beispiel 1:</h3>
+    <p>:0003:8:6...+53+4.7....4+2+56.+254867+3+9+1.+4..+9+6.1.162+38+5749.3..+1+4.+5....42193..1.+57...+44+2.6+3.+1+75:::829:</p>
+
+    <p><i>Bedeutung:</i></p>
+        <p>Erzeuge ein Sudoku aus der Zeichenkette</p>
+
+          <p>"6....3..7....4..6..54867..........1.162.8.749.3..........42193..1..7....4..6....5"</p>
+
+          <p>(alles von &lt;Angabe&gt;, das kein '+' davor stehen hat - die 'echte' Angabe).
+          Nun platziere die Zellen, die durch den folgenden String gegeben sind:</p>
+
+          <p>"....5.4.......25..2.....391.4..96......3.5.......14.5.............5....4.2..3.17."</p>
+
+          <p>(alles von &lt;Angabe&gt; mit einem '+' davor);
+              man kann auch alle '+' ignorieren und den folgenden String setzen:</p>
+
+          <p>"6...534.7....4256.254867391.4..96.1.162385749.3..14.5....42193..1.57...442.63.175"</p>
+
+          <p>es gibt keine Kandidaten, die gelöscht werden müssen;</p>
+
+          <p>suche ein Naked Single für Kandidat 8 im durch &lt;Angabe&gt; und &lt;gelöschte Kandidaten&gt;
+          bestimmten PM-Grid; es sollte eins gefunden werden, das 8 in r2c9 setzt.</p>
+
+    <h3>Beispiel 2 (die Zeichenkette muss auf einer Zeile stehen)</h3>
+    <p>:0603:3:14+8..+9+72+5.+3...89.697+6....38.+61......3+2.8.56...9......2.5+9+186....+8+3....61+6+1...35+89:224 524 225 525 135 455 755 458 758 165 168 771 284 484 784 285 485 785:364 365::</p>
+
+    <p><i>Bedeutung:</i></p>
+    <p>Setze alle Zellen von &lt;Angabe&gt; wie oben beschrieben; danach eliminiere:<br>
+        r2c4&lt;&gt;25, r2c5 &lt;&gt;25,
+        r3c5&lt;&gt;1, r5c5&lt;&gt;47, r5c8&lt;&gt;47, r6c5&lt;&gt;1, r6c8&lt;&gt;1, r7c1&lt;&gt;7, r4c8&lt;&gt;247, r5c8&lt;&gt;247;</p>
+
+    <p>suche ein Uniqueness Test Type 4 im PM, das Kandidaten für Ziffer 3 eliminieren kann; es sollte
+        eines existieren, das 3 aus r6c4 und r6c5 entfernt.</p>
+
+    <h2>Die komplette Bibliothek:</h2>
+    <p><a href="../libraries/reglib-1.3.txt">reglib-1.3.txt</a></p>
+    <hr>
+
+
+    <h1><a name="libex"></a>Exemplar-Bibliothek</h1>
+    <p>HoDoKus Exemplar-Bibliothek ist eine lose Sammlung von Sudokus, die bestimmte Techniken
+    verdeutlichen. Die meisten dieser Sudokus wurden mit HoDoKus Batch-Erzeugungs-Modus (siehe
+    <a href="docs_cre.html#batch">Sudokus im Batchbetrieb erzeugen</a> im Benutzer-Handbuch) gefunden.</p>
+    <p>Einige Beispiel funktionieren nur, wenn Solver-Optionen oder die Solver-Hierarchie geändert werden,
+    einige wenige Beispiele sind überhaupt falsch.</p>
+
+    <h2>Die Bibliothek:</h2>
+    <p><a href="../libraries/exemplars-1.0.txt">exemplars-1.0.txt</a></p>
+
+  <div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

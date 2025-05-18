@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Lösungsstrategien - ALS - Almost Locked Sets (Fast Gesperrte Mengen)</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Lösungsstrategien für Sudoku - ALS - Almost Locked Sets (Fast Gesperrte Mengen - ALS-XY, ALS-XY-Wing, ALS-Chain, Death Blossom)">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsch,als,almost locked set,als-xz,als-xy,als chain,death blossom,RCC,restricted common,overlap,als kette,todesblüte">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu ul li ul li.mTechAl a, #menu ul li ul li.mTechAl a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+        <li><ul class="sub1">
+                <li class="mTechIntro"><a href="tech_intro.html">Einleitung</a></li>
+                <li class="mTechSi"><a href="tech_singles.html">Singles</a></li>
+                <li class="mTechIn"><a href="tech_intersections.html">Intersections</a></li>
+                <li class="mTechHi"><a href="tech_hidden.html">Hidden Subsets</a></li>
+                <li class="mTechNa"><a href="tech_naked.html">Naked Subsets</a></li>
+                <li class="mTechFi"><a href="tech_fishg.html">Fish (allgemein)</a></li>
+                <li class="mTechBa"><a href="tech_fishb.html">Basic Fish</a></li>
+                <li class="mTechFS"><a href="tech_fishfs.html">Finned/Sashimi Fish</a></li>
+                <li class="mTechCF"><a href="tech_fishc.html">Complex Fish</a></li>
+                <li class="mTechSD"><a href="tech_sdp.html">Single Digit Patterns</a></li>
+                <li class="mTechUn"><a href="tech_ur.html">Uniqueness</a></li>
+                <li class="mTechWi"><a href="tech_wings.html">Wings</a></li>
+                <li class="mTechMi"><a href="tech_misc.html">Sonstiges</a></li>
+                <li class="mTechCo"><a href="tech_col.html">Coloring</a></li>
+                <li class="mTechCh"><a href="tech_chains.html">Chains/Loops</a></li>
+                <li class="mTechAl"><a href="tech_als.html">ALS</a></li>
+                <li class="mTechLa"><a href="tech_last.html">Letzter Ausweg</a></li>
+    </ul></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/tech_als.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/tech_als.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>ALS - Almost Locked Sets (Fast Gesperrte Mengen)</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#in">Einführung</a></li>
+        <li class="ni"><ul>
+            <li><a href="#in1">Almost Locked Set (ALS) (Fast Gesperrte Menge)</a></li>
+            <li><a href="#in2">Restricted Common Candidate (RCC) (Gemeinsamer Beschränkter Kandidat)</a></li>
+            <li><a href="#in3">ALS Überlappungen</a></li>
+        </ul></li>
+        <li><a href="#axz">ALS-XZ</a></li>
+        <li class="ni"><ul>
+            <li><a href="#axz1">Singly linked ALS-XZ (Einfach Verkettetes ALS-XZ)</a></li>
+            <li><a href="#axz2">Doubly linked ALS-XZ (Doppelt Verkettetes ALS-XZ)</a></li>
+        </ul></li>
+        <li><a href="#axy">ALS-XY-Wing (ALS-XY-Flügel)</a></li>
+        <li><a href="#ach">ALS Chain (ALS Kette)</a></li>
+        <li><a href="#db">Death Blossom (Todesblüte)</a></li>
+    </ul>
+    <hr>
+
+    <h1><a name="in"></a>Einführung</h1>
+    <h2><a name="in1"></a>Almost Locked Set (ALS) (Fast Gesperrte Menge)</h2>
+    <p>Ein Locked Set (Gesperrte Menge) (oder <a href="tech_naked.html">Naked Set</a> - Nackte Menge)
+    ist eine Gruppe von N ungelösten Zellen innerhalb eines Hauses, die gemeinsam nur noch
+    N Kandidaten übrig haben. Es ist ein sehr einfaches Konzept, das es erlaubt, alle Kandidaten
+    des Locked Sets aus allen anderen Zellen desselben Hauses zu löschen.</p>
+    <p>Ein Almost Locked Set (Fast Gesperrte Menge) ist ein Gruppe von ungelösten Zellen innerhalb
+    eines Hauses, die ein Locked Set wäre, hätte sie nur einen Kandidaten weniger. Etwas formaler:
+    Eine Gruppe von N Zellen mit N+1 Kandidaten. Jeder Sudoku-Spieler kennt das Phänomen: Wenn
+    man nach Naked Subsets sucht, findet man statt der Locked Sets immer eine Menge ALS.</p>
+    <p>Ein ALS kann selbst gar nichts, es ist aber möglich ein ALS als Knoten in einer Chain zu verwenden (siehe
+    <a href="tech_chains.html#in4">ALS in Chains</a>). Eine andere Möglichkeit etwas aus einem ALS herauszuholen
+    besteht darin, das ALS mit einem anderen ALS zu kombinieren. Strategien, die dieses Prinzip
+    verwenden, werden hier besprochen.</p>
+
+    <h2><a name="in2"></a>Restricted Common Candidate (RCC) (Gemeinsamer Beschränkter Kandidat)</h2>
+    <p>Um zwei ALS kombinieren zu können, müssen sie mindestens einen Kandidaten gemeinsam haben.
+    "Gemeinsam" bedeutet dabei, dass alle Instanzen des Kandidaten in ALS 1 alle Instanzen desselben
+    Kandidaten in ALS 2 sehen können. Ein solcher Kandidat wird Restricted Common Candidate
+    (Gemeinsamer Beschränkter Kandidat) oder RCC genannt.</p>
+    <p>Der Nutzen eines RCCs liegt in der Tatsache, dass er nur in einem der beiden ALS gesetzt
+    werden kann: Alle Zellen eines ALS sehen einander, also kann eine Ziffer prinzipiell nur maximal ein Mal
+    in einem ALS gesetzt werden. Ein RCC ist noch weiter eingeschränkt: Da alle Instanzen des RCC in beiden ALS
+    einander sehen, wird der RCC aus einem ALS komplett entfernt, wenn er im anderen ALS gesetzt wird.
+    Aus dem ersten ALS wird daher ein Locked Set.</p>
+    <p>Manchmal haben zwei ALS nicht nur einen, sondern zwei RCCs gemeinsam. Solche ALS werden "doubly linked"
+    (doppelt verkettet) genannt und bilden die Basis für einige sehr effektive Strategien.</p>
+
+    <h2><a name="in3"></a>ALS Überlappungen</h2>
+    <p>Zwei ALS dürfen sich prinzipiell in allen Techniken überlappen. Es gibt nur eine Einschränkung:
+    Der überlappende Bereich darf keinen RCC enthalten.</p>
+    <hr>
+
+    <h1><a name="axz"></a>ALS-XZ</h1>
+    <h2><a name="axz1"></a>Singly Linked ALS-XZ (Einfach Verkettes ALS-XZ)</h2>
+    <p>Dies ist die einfachste ALS-Strategie: Man finde zwei ALS mit einem RCC (der RCC wird X genannt).
+    Wenn beide ALS eine gemeinsame Ziffer Z enthalten, die nicht der RCC ist, kann Z von allen nicht-ALS-Zellen
+    gelöscht werden, die alle Instanzen von Z in beiden ALS sehen. Ein ALS-XZ ist in Wahrheit
+    eine ALS Chain der Länge 2.</p>
+    <p>Die Logik hinter ALS-XZ ist ziemlich einfach: Der RCC macht aus mindestens einem der ALS ein Locked Set
+    (welches, ist nicht bekannt). Da aber beide ALS die Ziffer Z enthalten, wird Z auf mindestens eines der ALS
+    beschränkt. Das bedeutet, dass in beiden ALS gemeinsam die Ziffer Z genau ein Mal gesetzt werden muss.
+    Jede Zelle, die alle möglichen Positionen von Z in den beiden ALS sehen kann, kann selber nicht Z sein.</p>
+    <a href='show_example89a8.html?file=axz01&amp;tech=ALS-XZ'><img class='scr_l' src='../examples/axz01.png' alt='Sudoku Lösungstechnik: Beispiel für ALS-XZ'></a>    <a href='show_examplea085.html?file=axz02&amp;tech=ALS-XZ'><img class='scr_l' src='../examples/axz02.png' alt='Sudoku Lösungstechnik: Beispiel für ALS-XZ'></a>    <p>Linkes Beispiel: Wir haben zwei ALS:  ALS A (r1c67, Kandidaten {679}) und ALS B
+    (r3c289, {6789}). In beiden ALS kommt die Ziffer 6 nur in Block 3 vor, sie ist also ein
+    RCC (X - violett markiert). Beide ALS haben als gemeinsame Ziffer neben dem RCC noch Ziffer 7
+    (Z - blau markiert). Die Zellen r3c56 gehören zu keinem ALS und können alle ALS-Zellen,
+    die jemals 7 werden könnten, sehen. 7 kann aus diesen Zellen gelöscht werden.</p>
+    <p>Rechtes Beispiel: A=r456c3,r6c2 {34568}, B=r7c2,r9c1 {378}, X=3, Z=8 => r789c3&lt;&gt;8.
+    ALS A ist in diesem Beispiel ein bisschen größer (4 Zellen mit 5 Kandidaten), das Prinzip ist das Gleiche.</p>
+
+    <h2><a name="axz2"></a>Doubly Linked ALS-XZ (Doppelt Verkettetes ALS-XZ)</h2>
+    <p>Wenn die beiden ALS zwei RCCs haben, wird es richtig interessant. Erinnern wir uns daran, dass
+    ein RCC nur in einem ALS gesetzt werden kann und das andere ALS in ein Locked Set umwandelt.
+    Wenn wir zwei RCCs haben, muss einer in ALS A platziert werden (er verwandelt ALS B in ein Locked Set) und
+    der andere muss in ALS B platziert werden (er verwandelt ALS A in ein Locked Set). Welcher RCC in welchem
+    ALS sein wird, wissen wir nicht. Beide RCCs in einem ALS geht deshalb nicht, weil sie dann beide aus
+    dem anderen ALS gelöscht würden, wodurch in diesem ALS nur mehr N-1 Kandidaten für N Zellen übrig
+    wären, was natürlich nicht sein kann.</p>
+    <p>Was kann man aus einem solchen Doubly Linked ALS-XZ schließen? Beide RCCs sind in einem ALS gelockt,
+    die RCCs können daher aus allen nicht-ALS-Zellen in den Häusern, die die RCCs bereitstellen, gelöscht werden.
+    Noch wichtiger aber ist, dass alle ALS-Ziffern, die nicht RCCs sind, auf das jeweile ALS beschränkt werden.
+    Sie können daher in allen Zellen außerhalb der ALS gelöscht werden, die alle Instanzen einer dieser
+    Ziffern sehen (die Eliminierungen können sogar das jeweils andere ALS betreffen, was das ALS-XZ
+    kannibalistisch macht).</p>
+    <a href='show_exampleb5bb.html?file=daxz01&amp;tech=Doubly+Linked+ALS-XZ'><img class='scr_l' src='../examples/daxz01.png' alt='Sudoku Lösungstechnik: Beispiel für Doubly+Linked+ALS-XZ'></a>    <a href='show_examplec9ba.html?file=daxz02&amp;tech=Doubly+Linked+ALS-XZ'><img class='scr_l' src='../examples/daxz02.png' alt='Sudoku Lösungstechnik: Beispiel für Doubly+Linked+ALS-XZ'></a>    <p>Linkes Beispiel: A=r2c239 {2479}, B=r4c23 {124}, X=2,4. ALS A und B sind doppelt verkettet durch
+    Kandidaten 2 und 4, es gibt keine zusätzliche gemeinsame Ziffer Z. Alle Instanzen von RCC 2 sind in
+    Spalte 2, das eliminiert 2 von r1c2. Alle Instanzen von RCC 4 sind in Spalte 3, das eliminiert 4 von r16c3.
+    ALS A hat jetzt noch Ziffern 7 und 9 übrig. Alle Instanzen dieser beiden Ziffern sind auf Zeile 2 beschränkt
+    und können aus allen anderen Zellen der Zeile 2 gelöscht werden. ALS B hat nur noch Ziffer 1 übrig,
+    alle 1er in ALS B sind auf Zeile 4 und Block 4 beschränkt, das löscht alle anderen 1er aus diesen
+    beiden Häusern.</p>
+    <p>Das ALS-XZ im rechten Beispiel ist der dritte Spielzug in diesem Sudoku (nach einem
+    <a href="tech_singles.html#h1">Hidden Single</a> und einem <a href="tech_intersections.html#lc1">Locked Candidates Type 1</a>):
+    A=r23c4 {467}, B=r2c23,r3c23 {14678}, X=4,6. RCC 4 ist beschränkt auf Zeile 3 (keine
+    Eliminierungen), RCC 6 auf Zeile 2 (r2c5&lt;&gt;6). ALS A hat Ziffer 7 übrig (Eliminierungen
+    von Block 2 und Spalte 4), ALS B hat 1, 7 und 8 übrig (eliminiert von Block 1 und
+    Spalte 2 - Spalte 2 nur für Ziffer 1). Die letzte Unterscheidung ist wichtig: Ziffern 7 und 8
+    sind auf Block 1 beschränkt und können daher nur aus diesem Haus gelöscht werden. Ziffer 1 jedoch
+    ist auf die Überschneidung von Block 1 und Spalte 2 beschränkt und kann daher aus beiden
+    Häusern gelöscht werden.</p>
+    <hr>
+
+    <h1><a name="axy"></a>ALS-XY-Wing (ALS-XY-Flügel)</h1>
+    <p>Ein ALS-XY-Flügel benötigt drei ALS, A, B und C (es ist eine ALS Chain der Länge 3: z- A -x- C -y- B -z).
+    ALS A hat RCC X mit ALS C, ALS B hat RCC Y mit ALS C (X und Y dürfen nicht gleich sein).
+    ALS A und ALS B haben die gemeinsame Ziffer Z.
+    Z kann aus allen Zellen gelöscht werden, die alle Instanzen von Z in A und B sehen.</p>
+    <p>Die Logik ist gleich wie bei einer ALS Chain (siehe unten): Wenn Z nicht in ALS A ist, muss A X
+    enthalten (aus einem ALS darf nur eine Ziffer fehlen). Das heißt, dass C Y enthalten muss, was wiederum bedeutet,
+    dass B Z enthalten muss (in B fehlt jetzt schon Y). Die umgekehrte Richtung funktioniert auch:
+    Wenn ALS B Z nicht enthält, muss Z in ALS A sein.</p>
+    <a href='show_example11d8.html?file=axy01&amp;tech=ALS-XY-Wing'><img class='scr_l' src='../examples/axy01.png' alt='Sudoku Lösungstechnik: Beispiel für ALS-XY-Wing'></a>    <a href='show_exampleed6b.html?file=axy02&amp;tech=ALS-XY-Wing'><img class='scr_l' src='../examples/axy02.png' alt='Sudoku Lösungstechnik: Beispiel für ALS-XY-Wing'></a>    <p>Linkes Beispiel: A=r7c156 {3678}, B=r579c8 {2389}, C=r9c34 {179}, X,Y=7,9, Z=3. RCC 7 ist
+    auf Block 7 beschränkt, RCC 9 auf Zeile 9 (beide violett markiert - die Übereinstimmung der Nummern
+    ist Zufall). Die gemeinsame Ziffer 3 muss in einer der blauen Zellen gesetzt werden, sie kann nie in
+    r7c7 sein.</p>
+    <p>Rechtes Beispiel: A=r1c78 {247}, B=r25c4 {679}, C=r259c9 {3467}, X,Y=4,6, Z=7. Man beachte, dass ALS C
+    ebenfalls die Ziffer 7 enthält, das ist für den Spielzug uninteressant.</p>
+    <hr>
+
+    <h1><a name="ach"></a>ALS Chain (ALS Kette)</h1>
+    <p>ALS Ketten sind eine Reihe von ALS, verbunden durch RCCs. Das erste und letzte ALS muss
+    eine gemeinsame Ziffer enthalten, diese Ziffer wird aus allen Zellen gelöscht, die alle
+    Instanzen der Ziffer in beiden Enden der ALS Chain sehen können. Einige Beschränkungen
+    gelten für die RCCs: Keine zwei benachbarten RCCs dürfen gleich sein. Erstellt man
+    ALS Chains, die doppelt verkettete ALS enthalten, sind die Regeln noch etwas komplizierter.
+    Eine Diskussion aller Möglichkeiten mit doppelt verketteten ALS sprengt den Rahmen dieses
+    Führers, genauere Informationen kann man in <a href="http://forum.enjoysudoku.com/viewtopic.php?t=6642">Restricted Common Adjacency Rules</a>
+    im Player's Forum finden.</p>
+    <p>Die Logik: Die Kette beweist, dass die gemeinsame Ziffer im End-ALS sein muss, wenn sie nicht im Start-ALS
+    ist, und dass daher diese Ziffer in allen Zellen gelöscht wird, die alle Instanzen der Ziffer im End-ALS sehen können.
+    Ist die gemeinsame Ziffer jedoch im Start-ALS, eliminiert sie sie aus allen Zellen, die alle Instanzen der Ziffer
+    im Start-ALS sehen. Beide Fälle kombiniert (eine typische Verity) ergeben die endgültigen
+    Eliminierungen.</p>
+    <p>Einige Erklärungen für ALS Chains (oft auch ALS-XY-Chains genannt), basieren darauf, dass die
+    Chains reversibel sind. Das ist allerdings leider für kompliziertere ALS Chains mit
+    doppelt verketteten ALS nicht der Fall. Die oben beschriebene Logik funktioniert aber auch
+    in diesen Fällen.</p>
+    <p>ALS Chains können in Nice Loop-Notation mit den RCCs als Weak Links zwischen den ALS
+    geschrieben werden.</p>
+    <a href='show_example4d0b.html?file=ach01&amp;tech=ALS+Chain'><img class='scr_l' src='../examples/ach01.png' alt='Sudoku Lösungstechnik: Beispiel für ALS+Chain'></a>    <a href='show_example7c2a.html?file=ach02&amp;tech=ALS+Chain'><img class='scr_l' src='../examples/ach02.png' alt='Sudoku Lösungstechnik: Beispiel für ALS+Chain'></a>    <p>Linkes Beispiel: 69- r1c4789 {24569} -5- r8c4 {56} -6- r58c3 {256} -2- r2c123,r3c3 {23469} -69.
+    Nichts Spezielles hier, außer dass die Chain zwei gemeinsame Ziffern hat (6 und 9). Das zweite ALS ist
+    eine einfache zweiwertige Zelle (das kleinste mögliche ALS - zwei Kandidaten in einer Zelle).</p>
+    <p>Rechtes Beispiel: 3- r2c1249 {23567} -7- r2c7 {37} -3- r7c7 {37} -7- r7c4,r8c5 {237} -3.
+    Zwei ALS sind in dieser Chain doppelt verkettet: r2c7 und r7c7 verkettet durch {37}. Das ist erlaubt,
+    solange alle benachbarten RCCs verschieden sind.</p>
+    <hr>
+
+    <h1><a name="db"></a>Death Blossom (Todesblüte)</h1>
+    <p>Ein Death Blossom besteht aus einer Stammzelle und aus Blütenblättern. Jedes Blütenblatt
+    ist ein ALS, das ein RCC mit der Stammzelle hat. Wenn ein Blütenblatt für jeden Kandidaten der
+    Stammzelle gefunden werden kann und wenn alle Blütenblätter einen gemeinsamen Kandidaten haben,
+    kann dieser Kandidat aus allen Zellen gelöscht werden, die alle Instanzen des Kandidatens in allen
+    Blütenblättern sehen können.</p>
+    <p>Sind Überlappungen nicht erlaubt (Standard für HoDoKu), ist es sehr schwer, einen Death Blossom
+    mit mehr als zwei Kandidaten in der Stammzelle zu finden (so ein Death Blossom ist immer
+    ein ALS-XY-Wing). Werden Überlappungen zugelassen (es werden keine Einschränkungen benötigt),
+    können sehr interessante Death Blossoms gefunden werden.</p>
+    <p>Die Logik hinter Death Blossom ist einfach: Einer der Kandidaten in der Stammzelle muss wahr sein,
+    er beschränkt dann die gemeinsame Ziffer im verketteten ALS.</p>
+    <a href='show_example4200.html?file=db01&amp;tech=Death+Blossom'><img class='scr_l' src='../examples/db01.png' alt='Sudoku Lösungstechnik: Beispiel für Death+Blossom'></a>    <a href='show_example751d.html?file=db02&amp;tech=Death+Blossom'><img class='scr_l' src='../examples/db02.png' alt='Sudoku Lösungstechnik: Beispiel für Death+Blossom'></a>    <p>Linkes Beispiel: [r3c4],  -4- r2c23,r3c23 {14678},  -7- r2c4 {67}. Die Stammzelle r3c4 hat RCC 4 mit
+    ALS r2c23,r3c23 und RCC 7 mit ALS r2c4. Beide ALS haben eine gemeinsame Ziffer 6, die 6 aus r2c5 eliminiert.
+    Es handelt sich um einen typischen nicht überlappenden Death Blossom, der in Wirklichkeit ein ALS-XY-Wing ist.</p>
+    <p>Rechtes Beispiel: [r7c6],  -3- r8c3456 {23569},  -6- r8c4 {56},  -9- r8c345 {2569}. In diesem Beispiel
+    überlappen sich ALS 2 und ALS 3 komplett mit ALS 1 (Zelle r8c4 ist in allen drei ALS enthalten!). Das ist
+    erlaubt. Die gemeinsame Ziffer ist 5 (6 ist auch eine gemeinsame Ziffer, ist aber auch ein RCC und darf
+    daher nicht verwendet werden), der Death Blossom eliminiert 5 aus r8c2.</p>
+    <hr>
+
+<div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

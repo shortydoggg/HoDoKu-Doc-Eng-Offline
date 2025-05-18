@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Benutzerhandbuch (Kapitel 6: Mit Lösungswegen arbeiten)</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Benutzerhandbuch für HoDoKu - Kapitel 6: Mit Lösungswegen arbeiten">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsche version,version,geschichte,änderungen,english,lösungstechniken,tipps,fish,uniqueness,coloring,chains,als,wings,subsets">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu ul li ul li.mDocsSol a, #menu ul li ul li.mDocsSol a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+        <li><ul class="sub1">
+                <li class="mDocsIntro"><a href="docs_intro.html">Einleitung</a></li>
+                <li class="mDocsPlay"><a href="docs_play.html">Spielen</a></li>
+                <li class="mDocsSolv"><a href="docs_solv.html">Solver</a></li>
+                <li class="mDocsCre"><a href="docs_cre.html">Puzzles erzeugen</a></li>
+                <li class="mDocsFAS"><a href="docs_fas.html">Alle Lösungsschritte</a></li>
+                <li class="mDocsSol"><a href="docs_sol.html">Lösungswege</a></li>
+                <li class="mDocsRef"><a href="docs_ref.html">Referenz</a></li>
+    </ul></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/docs_sol.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/docs_sol.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Kapitel 6: Mit Lösungswegen arbeiten</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#intro">Einleitung</a></li>
+        <li><a href="#jump">Zu bestimmten Lösungsschritten springen</a></li>
+                <li><a href="#change">Lösungswege ändern</a></li>
+        <li><a href="#add_delete">Lösungswege hinzufügen/löschen/umbenennen</a></li>
+        <li><a href="#print">Lösungswege drucken</a></li>
+    </ul>
+    <hr>
+
+    <h1><a name="intro"></a>Einleitung</h1>
+    <p>Eines der komplexesten Features von HoDoKu ist die Möglichkeit,
+    gleichzeitig mit mehreren verschiedenen Lösungswegen für ein und
+    dasselbe Sudoku zu arbeiten (und das macht auch ziemlich viel Spaß!).
+    Die folgenden Screenshots zeigen zwei sehr unterschiedliche
+    Lösungen für ein Sudoku:</p>
+    <img class="scr_l" src="img/scrsol1.png" alt="Screenshot: Two different solutions for the same sudoku - Solution 1">
+    <img class="scr_l" src="img/scrsol2.png" alt="Screenshot: Two different solutions for the same sudoku - Solution 2">
+    <p class="clear">Beide Lösungen können unabhängig voneinander verwendet
+    werden. Man kann mit einem einfachen Doppelklick zu einem beliebigen
+    Schritt in jeder der beiden Lösungen springen, man kann Lösungen
+    hinzufügen, verändern und löschen und wenn das Sudoku in eine Datei geschrieben
+    wird, werden alle Lösungswege mit ihm abgespeichert.</p>
+    <hr>
+
+    <h1><a name="jump"></a>Zu bestimmten Lösungsschritten springen</h1>
+    <img class="scr_l" src="img/scrsol3.png" alt="Screenshot: Solution path view - contexct menu">
+    <p>Hat man eine Lösung, kann man zu jedem Schritt springen, indem man ihn
+    einfach doppelt anklickt oder indem man mit der rechten Maustaste das
+    Kontextmenü aktiviert und "bis hierher lösen" anwählt.</p>
+    <p>Beide Methoden lösen das Sudoku bis zum Schritt vor dem angewählten
+    Lösungsschritt und zeigen den gewählten Schritt im Sudoku an.</p>
+    <p>Das funktioniert sogar, wenn man mehr als eine Lösung hat: Zuerst muss
+    man die Lösung wählen (den Reiter am Fuß der Liste klicken), das Sudoku
+    ändert sich gemäß der letzten Auswahl in dieser Lösung. Anschließend kann
+    man wie oben beschrieben einen Schritt aus dieser Lösung wählen.</p>
+    <hr class="clear">
+
+    <h1><a name="change"></a>Lösungswege ändern</h1>
+    <p>Um eine Lösung zu ändern müssen drei separate Arbeitsschritte ausgeführt werden:</p>
+    <ul>
+        <li>Zuerst wählt man den Schritt, den man ersetzen will. Man aktiviert
+        das Kontextmenü auf diesem Schritt und führt "ab hier löschen" aus.
+        Der Schritt und alle nach ihm werden gelöscht, es wird ein "Unvollständig"-Schritt
+        eingefügt und das Sudoku wird bis zu diesem neuen Schritt gelöst.</li>
+        <li>Nun wechselt man zu "Alle möglichen Schritte" und drückt "Alle
+        Lösungsschritte finden". Wenn man einen passenden Ersatz gefunden hat, wählt man ihn
+        und drückt "Zur Lösung hinzufügen". Der neue Schritt wird vor "Unvollständig"
+        eingefügt, aber nicht ausgeführt.</li>
+        <li>Nun geht man zum Lösungsweg zurück und klickt doppelt auf "Unvollständig"
+        (oder führt "ab hier lösen" aus). Die Lösung wird automatisch vervollständigt.</li>
+    </ul>
+    <p>Es ist natürlich auch möglich, mehrere Schritte auf einmal zur Lösung hinzuzufügen,
+    allerdings ist man selbst für die korrekte Synchronisation der beiden involvierten
+    Ansichten verantwortlich. Vorgangsweise:</p>
+    <ul>
+        <li>Hat man gerade einen neuen Schritt eingefügt, ist er immer noch
+        hervorgehoben. Nun drückt man "Ausführen" im Hinweis-Bereich</li>
+        <li>Nun kann man wieder "Alle Lösungsschritte finden" ausführen,
+        einen anderen Schritt hinzufügen und ausführen</li>
+        <li>Der Vorgang wird so oft wie nötig wiederholt</li>
+    </ul>
+    <p>Bitte beachten: Es ist möglich eine Batch-Lösung (mehrere Schritte für denselben
+    Zustand des Sudokus auf einmal ausführen) zu simulieren, indem man mehrere
+    Lösungsschritte aus demselben "Alle Lösungsschritte finden"-Lauf zur Lösung
+    hinzufügt. Obwohl das Ergebnis korrekt sein wird, könnte die Anzeige einiger
+    Schritte im Sudoku unvollständig und damit irreführend sein.</p>
+    <hr>
+
+    <h1><a name="add_delete"></a>Lösungswege hinzufügen/löschen/umbenennen</h1>
+    <p>Neue Lösungen können hinzugefügt werden, indem man das Kontext-Menü auf einem
+    Reiter einer bestehenden Lösung aktiviert und "Neue Lösung" wählt.</p>
+    <img class="scr_l" src="img/scrsol4.png" alt="Screenshot: Solution path view - add/delete solutions">
+    <p>Eine neue Lösung mit einem Standardnamen wird erzeugt, der Inhalt des Lösungsweges,
+    für den das Kontext-Menü ausgeführt wurde, wird in die neue Lösung kopiert.</p>
+    <p>Um eine Lösung zu löschen, aktiviert man das Kontext-Menü für diese Lösung
+    und wählt "Löschen".</p>
+    <p>Lösungswege können mit Hilfe des Kontextmenüs auch umbenannt werden.</p>
+    <p>Bitte beachten: Erzeugt man ein neues Sudoku, werden alle Lösungen für das alte
+    Sudoku ohne Vorwarnung gelöscht. Will man die alten Lösungen nicht verlieren,
+    muss man sie zuerst in eine Datei speichern.</p>
+    <hr class="clear">
+
+    <h1><a name="print"></a>Lösungswege drucken</h1>
+    <p>Lösungswege können ausgedruckt oder in die Zwischenablage kopiert werden. Dazu muss
+    "Drucken..." aus dem Kontextmenü gewählt werden.</p>
+    <img class="scr_l" src="img/scrsol5.png" alt="Screenshot: Lösungsweg drucken">
+    <p>Ein Dialog wird angezeigt, über den die Druckausgabe kontrolliert werden kann:</p>
+    <ul class="nfloat">
+        <li><b>Titel:</b> Der Name des Lösungsweges</li>
+        <li><b>Breite:</b> Die Breite des Sudokus in [mm] (nur Druckausgabe)</li>
+        <li><b>Singles unterdrücken:</b> Wenn gewählt, werden aufeinanderfolgende Singles
+        durch eine Zeile "Singles bis:" gefolgt vom Sudoku im Zustand nach dem
+        letzten Single ersetzt</li>
+        <li><b>SSTS unterdrücken:</b> Gleich wie "Singles unterdrücken", aber alle
+        SSTS-Techniken werden ersetzt</li>
+        <li><b>Grids wählen:</b> In der Liste werden alle Lösungsschritte angezeigt.
+        Normalerweise werden die Lösungsschritte nur in Textform ausgegeben. Wird ein
+        Lösungsschritt aber in der Liste angewählt, wird ein Bild des Sudoku im passenden
+        Zustand und mit dem hervorgehobenen Schritt in die Ausgabe eingefügt</li>
+        <li><b>Drucken...:</b> Öffnet den Standard-Druckdialog und gibt den Lösungsweg
+        auf dem ausgewählten Drucker aus</li>
+        <li><b>Kopieren:</b> Kopiert den Lösungsweg als Text in die Zwischenablage</li>
+        <li><b>Seite einrichten...:</b> Öffnet den Standarddialog des Betriebssystems
+        für die Seiteneinrichtung</li>
+        <li><b>Schließen:</b> Schließt den Dialog</li>
+    </ul>
+    <hr class="clear">
+
+<div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

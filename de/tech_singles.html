@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Lösungsstrategien - Singles (Einzelzahlen)</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Lösungsstrategien für Sudoku - Singles (Einzelzahlen) - Hidden Single, Naked Single, Full House">
+    <meta name="keywords" content="sudoku,java,hodoku,singles,full house,last digit,hidden single,naked single,einzelzahl,versteckte einzelzahl,nackte einzelzahl">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu ul li ul li.mTechSi a, #menu ul li ul li.mTechSi a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+        <li><ul class="sub1">
+                <li class="mTechIntro"><a href="tech_intro.html">Einleitung</a></li>
+                <li class="mTechSi"><a href="tech_singles.html">Singles</a></li>
+                <li class="mTechIn"><a href="tech_intersections.html">Intersections</a></li>
+                <li class="mTechHi"><a href="tech_hidden.html">Hidden Subsets</a></li>
+                <li class="mTechNa"><a href="tech_naked.html">Naked Subsets</a></li>
+                <li class="mTechFi"><a href="tech_fishg.html">Fish (allgemein)</a></li>
+                <li class="mTechBa"><a href="tech_fishb.html">Basic Fish</a></li>
+                <li class="mTechFS"><a href="tech_fishfs.html">Finned/Sashimi Fish</a></li>
+                <li class="mTechCF"><a href="tech_fishc.html">Complex Fish</a></li>
+                <li class="mTechSD"><a href="tech_sdp.html">Single Digit Patterns</a></li>
+                <li class="mTechUn"><a href="tech_ur.html">Uniqueness</a></li>
+                <li class="mTechWi"><a href="tech_wings.html">Wings</a></li>
+                <li class="mTechMi"><a href="tech_misc.html">Sonstiges</a></li>
+                <li class="mTechCo"><a href="tech_col.html">Coloring</a></li>
+                <li class="mTechCh"><a href="tech_chains.html">Chains/Loops</a></li>
+                <li class="mTechAl"><a href="tech_als.html">ALS</a></li>
+                <li class="mTechLa"><a href="tech_last.html">Letzter Ausweg</a></li>
+    </ul></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/tech_singles.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/tech_singles.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Singles (Einzelzahlen)</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#fh">Full House/Last Digit (Volles Haus/Letzte Ziffer)</a></li>
+        <li><a href="#h1">Hidden Single (Versteckte Einzelzahl)</a></li>
+<!--        <li class="ni"><ul>
+            <li><a href="#display_mode_1">Puzzle only view (standard)</a></li>
+            <li><a href="#display_mode_2">Summary view</a></li>
+        </ul></li> -->
+        <li><a href="#n1">Naked Single (Nackte Einzelzahl)</a></li>
+        <li><a href="#fnh1">Wie man sie findet</a></li>
+    </ul>
+    <hr>
+
+    <h1><a name="fh"></a>Full House/Last Digit (Volles Haus/Letzte Ziffer)</h1>
+    <p>Singles sind die einfachsten Strategien beim Lösen von Sudokus und innerhalb der
+    Gruppe der Singles ist das <b>Full House</b> wieder die einfachste Strategie.</p>
+    <a href='show_example50f6.html?file=fh01&amp;tech=Full+House'><img class='scr_l' src='../examples/fh01.png' alt='Sudoku Lösungstechnik: Beispiel für Full+House'></a>    <a href='show_examplea118.html?file=fh02&amp;tech=Full+House'><img class='scr_l' src='../examples/fh02.png' alt='Sudoku Lösungstechnik: Beispiel für Full+House'></a>    <p>Unter einem Full House versteht man einfach die letzte Ziffer, die in einem Haus platziert werden kann.
+    Wenn es sich um die letzte Ziffer im gesamten Gitter handelt, wird das manchmal als "Last Digit"
+    bezeichnet. Im linken oberen Beispiel hat Block 8 nur noch eine einzige ungefüllte Zelle.
+    Die einzige noch fehlende Ziffer ist 6, r9c6 muss also 6 sein.</p>
+    <p>Im rechten Beispiel ist das Full House in Zeile 5: Es fehlt nur noch die Ziffer 1.</p>
+    <hr>
+
+    <h1><a name="h1"></a>Hidden Single (Versteckte Einzelzahl)</h1>
+    <a href='show_examplee24f.html?file=h101&amp;tech=Hidden+Single'><img class='scr_l' src='../examples/h101.png' alt='Sudoku Lösungstechnik: Beispiel für Hidden+Single'></a>    <a href='show_exampled067.html?file=h102&amp;tech=Hidden+Single'><img class='scr_l' src='../examples/h102.png' alt='Sudoku Lösungstechnik: Beispiel für Hidden+Single'></a>    <p>Hidden Single bedeutet, dass es für eine bestimmte Ziffer in einem bestimmten Haus nur noch
+    eine Zelle gibt, wo diese Ziffer möglich ist. Für die Zelle selbst sind noch mehrere Kandidaten
+    möglich, die richtige Ziffer ist also zwischen den anderen Kandidaten <em>versteckt</em>.</p>
+    <p>Betrachten wir Zelle r3c4 im linken Beispiel: Die Ziffern 4, 6 und 9 sind noch möglich (sie verletzen
+    die Sudoku-Regel nicht). Wenn wir allerdings Zeile 3 betrachten, sehen wir, dass in dieser Zeile die Ziffer 6
+    nur noch in r3c4 gesetzt werden kann. r3c1, r3c2 und r3c3 werden von Ziffer 6 in r2c3 blockiert, r3c6 wird von
+    Ziffer 6 in r6c6 blockiert. Das bedeutet, dass 6 in r3c4 gesetzt werden kann.</p>
+    <p>Im rechten Beispiel sind mehrere Hidden Singles zu finden. Eines ist in r6c4: Ziffer 3
+    ist die einzige Möglichkeit für Zeile 6, Spalte 4 und Block 5.</p>
+    <hr>
+
+    <h1><a name="n1"></a>Naked Single (Nackte Einzelzahl)</h1>
+    <a href='show_example68c9.html?file=n101&amp;tech=Naked+Single'><img class='scr_l' src='../examples/n101.png' alt='Sudoku Lösungstechnik: Beispiel für Naked+Single'></a>    <a href='show_example817a.html?file=n102&amp;tech=Naked+Single'><img class='scr_l' src='../examples/n102.png' alt='Sudoku Lösungstechnik: Beispiel für Naked+Single'></a>    <p>Naked Single bedeutet, dass in einer bestimmten Zelle nur noch eine einzige Ziffer
+    gesetzt werden kann (diese letzte Ziffer kann sich hinter keiner anderen mehr verstecken
+    und ist daher <em>nackt</em>). Die Ziffer muss in dieser Zelle gesetzt werden.</p>
+    <p>Linkes Beispiel: Zelle r6c7 ist kein Hidden Single. Zeile 6 hat eine andere Möglichkeit für
+    Ziffer 6 in r6c4, Spalte 7 und Block 6 haben beide eine andere mögliche Zelle für Ziffer 6 in r5c7.
+    Wenn wir aber alle Zellen anschauen, die Zelle r6c7 sehen können, merken wir, dass diese Zellen
+    bereits alle Ziffern außer der 6 enthalten. 6 ist daher der letzte verbleibende Kandidat für r6c7.</p>
+    <p>Im rechten Sudoku wird zuerst 3 in r3c4 gesetzt (Hidden Single). Das erzeugt das Naked Single
+    in r3c3: 5 ist die letzte mögliche Ziffer in dieser Zelle und kann daher gesetzt werden.</p>
+    <hr>
+
+    <h1><a name="fnh1"></a>Wie man sie findet</h1>
+    <p>Wie man Full Houses finden kann, erklärt sich von selbst. Hidden und Naked Singles können nicht
+    so leicht erkannt werden. Die beiden Strategien geben ein gutes Beispiel dafür ab, warum es so
+    schwer ist, einen Schwierigkeitsgrad für Lösungsstrategien anzugeben: Wenn man mit Papier und
+    Bleistift löst, fallen Hidden Singles sofort auf, aber Naked Singles zu finden kann eine ganze Weile
+    dauern. Verwendet man ein Computerprogramm wie HoDoKu, das die verbleibenden Kandidaten
+    automatisch ermittelt, ist das Finden von Naked Singles trivial, aber die Suche nach Hidden Singles
+    kann ziemlich mühsam werden, weil noch so viele andere Kandidaten im Gitter übrig sind (speziell
+    am Anfang eines Spiels).</p>
+    <p>Rätselt man manuell, kann man Hidden Singles mit Ausstreichen (engl.: cross hatching) finden:
+    Man konzentriert sich auf eine Ziffer in einem Block. In Gedanken zieht man Linien durch alle
+    Zeilen und Spalten, in denen die Ziffer bereits gesetzt ist. Bleibt nur noch eine Zelle übrig,
+    ist sie ein Hidden Single für diese Ziffer (das funktioniert natürlich ganz gleich auch für
+    Zeilen und Spalten).</p>
+    <a href='show_example1fb1.html?file=h103&amp;tech=Hidden+Single+%28cross+hatching%29'><img class='scr_l' src='../examples/h103.png' alt='Sudoku Lösungstechnik: Beispiel für Hidden+Single+%28cross+hatching%29'></a>    <a href='show_example43c3.html?file=h104&amp;tech=Hidden+Single+%28filters%29'><img class='scr_l' src='../examples/h104.png' alt='Sudoku Lösungstechnik: Beispiel für Hidden+Single+%28filters%29'></a>    <p>Das linke Bild zeigt diese Technik für Ziffer 3 in Block 5: Alle Zellen in diesem Block werden von einer
+    bereits gesetzten Ziffer 3 blockiert, r6c4 ist die letzte mögliche Zelle für Ziffer 3
+    in Block 5.</p>
+    <p>Das rechte Bild zeigt eine andere Möglichkeit: Verwenden von <a href="docs_play.html#filters">Filtern</a>.
+    Wenn Filter eingeschaltet sind, können Hidden Singles und <a href="tech_intersections.html">Locked Candidates</a>
+    leicht gefunden werden.</p>
+    <p>Um Naked Singles manuell zu finden trägt man am besten alle noch verbleibenden Kandidaten in das Gitter
+    ein oder man konzentriert sich auf Erfolg versprechende Zellen (alle Ziffern in den Zellen, die die Zielzelle
+    sehen können, durchgehen; wenn nur eine Ziffer übrig ist, hat man ein Naked Single gefunden).</p>
+    <hr>
+
+<div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

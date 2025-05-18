@@ -1,0 +1,320 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Benutzerhandbuch (Kapitel 1: Einleitung)</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Benutzerhandbuch für HoDoKu - Kapitel 1: Einleitung">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsche version,version,geschichte,änderungen,english,lösungstechniken,tipps,fish,uniqueness,coloring,chains,als,wings,subsets">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu ul li ul li.mDocsIntro a, #menu ul li ul li.mDocsIntro a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+        <li><ul class="sub1">
+                <li class="mDocsIntro"><a href="docs_intro.html">Einleitung</a></li>
+                <li class="mDocsPlay"><a href="docs_play.html">Spielen</a></li>
+                <li class="mDocsSolv"><a href="docs_solv.html">Solver</a></li>
+                <li class="mDocsCre"><a href="docs_cre.html">Puzzles erzeugen</a></li>
+                <li class="mDocsFAS"><a href="docs_fas.html">Alle Lösungsschritte</a></li>
+                <li class="mDocsSol"><a href="docs_sol.html">Lösungswege</a></li>
+                <li class="mDocsRef"><a href="docs_ref.html">Referenz</a></li>
+    </ul></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/docs_intro.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/docs_intro.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Kapitel 1: Einleitung</h1>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+        <li><a href="#features">Funktionen</a></li>
+        <li><a href="#display_modes">Anzeigemodi</a></li>
+        <li class="ni"><ul>
+            <li><a href="#display_mode_1">Nur Sudoku (standard)</a></li>
+            <li><a href="#display_mode_2">Zusammenfassung</a></li>
+            <li><a href="#display_mode_3">Lösungsweg</a></li>
+            <li><a href="#display_mode_4">Alle möglichen Schritte</a></li>
+            <li><a href="#display_mode_5">Größe der Anzeigebereiche verändern</a></li>
+            <li><a href="#display_mode_6">Schriftgröße verändern</a></li>
+            <li><a href="#display_mode_7">ColorKu-Modus</a></li>
+        </ul></li>
+        <li><a href="#running_hodoku">HoDoKu ausführen</a></li>
+        <li><a href="#portable_hodoku">Portables HoDoKu</a></li>
+    </ul>
+    <hr>
+
+    <h1><a name="features"></a>Funktionen</h1>
+    <p>Es gibt tausende von Sudoku-Programmen, warum also sollte man ausgerechnet
+    dieses verwenden?</p>
+    <p>Die meisten Sudoku-Programme verfügen nur über eine
+    beschränkte Anzahl an Funktionen. Sie können Sudokus erzeugen (normalerweise
+    nur eher einfache), sie können einfache Sudokus mit Logik lösen, müssen aber
+    aufgrund der begrenzten Anzahl an implementierten Lösungstechniken relativ bald
+    auf Brute Force ("Rohe Gewalt" - also einfach raten) zurückgreifen.</p>
+    <p>Sie erlauben es Werte und Kandidaten einzugeben und die Lösung des Sudokus
+    anzuzeigen. Wenn man mehr will (zum Beispiel mehr und anspruchsvollere Techniken lernen,
+    schwere Sudokus analysieren...), nimmt die Anzahl an verfügbaren Programmen
+    schnell ab.</p>
+    <p>HoDoKu bietet eine reiche Auswahl an Funktionen, mehr verschiedene
+    Lösungstechniken als die meisten anderen Programme und eine einfache
+    grafische Benutzeroberfläche. Da das Programm in Java geschrieben wurde,
+    läuft es außerdem auf allen Betriebssystemen und Plattformen, für die Java
+    verfügbar ist.</p>
+    <p>Eine kurze Liste mit Dingen, die man mit HoDoKu machen kann:</p>
+    <ul>
+        <li>Erzeugen von Sudokus in fünf verschiedenen und voll konfigurierbaren
+        Schwierigkeitsstufen. Erzeugen von Sudokus, die bestimmte Lösungstechniken
+        enthalten (z.B. um neue Arten Sudokus zu lösen auszuprobieren). Alle von
+        HoDoKu erzeugten Rätsel haben natürlich garantiert eine eindeutige Lösung.</li>
+        <li>Sudokus lösen; wenn man einmal hängen bleibt, hilft das Hinweis-System
+        weiter (natürlich auch voll konfigurierbar)</li>
+        <li>Alle möglichen Lösungsschritte für den aktuellen Zustand des Sudokus anzeigen
+        lassen (eignet sich gut zum Studieren der einzelnen Lösungstechniken).
+        Außerdem kann man verschiedenen Lösungen für ein und dasselbe Sudoku erzeugen</li>
+        <li>Man hat die Wahl zwischen den mehr als 90 verschiedenen Lösungstechniken,
+        die HoDoKu zur Zeit unterstützt</li>
+        <li>Verfügbare Lösungsschritte können im Puzzle grafisch angezeigt werden
+        (ist ein großartiges Werkzeug um neue Techniken zu erlernen)</li>
+        <li>HoDoKus Filter helfen beim schnellen und unkomplizierten Finden der
+        einfachen Lösungtechniken (dafür kann man sich dann auf die schwierigen
+        Techniken konzentrieren)</li>
+        <li>Die Größe des Programmfensters kann beliebig verändert werden; die Anzeige des
+        Sudokus nimmt automatisch den gesamten verfügbaren Platz in Anspruch</li>
+        <li>Sudokus und Lösungswege können in eine Datei gespeichert werden
+        (natürlich unabhängig vom aktuellen Zustand des Sudokus)</li>
+        <li>Unbegrenztes Rückgängig/Wiederherstellen</li>
+        <li>Von den Sudokus können hochauflösende Grafiken angefertigt werden</li>
+        <li>Der Batch-Modus von HoDoKu erlaubt das Erzeugen von Rätseln, die
+        bestimmte Techniken enthalten, sowie das Lösen von Sudokus mit
+        beliebigen Konfigurationen</li>
+        <li>Erstellen Sie eigene Sudoku-Booklets in verschiedenen Layouts</li>
+        <li>Wenn Ihnen Farben lieber sind als Ziffern, probieren Sie HoDoKus neuen <b>ColorKu-Modus</b></li>
+    </ul>
+    <hr>
+
+    <h1><a name="display_modes"></a>Anzeigemodi</h1>
+    <p>HoDoKu verfügt über fünf verschiedene Anzeigemodi (alle auch im ColorKu-Modus verfügbar):</p>
+    <ul>
+        <li>Nur Sudoku: Kann zum reinen Spielen verwendet werden (ohne alle Extras)</li>
+        <li>Sudoku + Zusammenfassung: Die Zusammenfassung zeigt, welche Lösungstechniken
+        HoDoKu verwendet hat, als es das Rätsel gelöst hat. Das eignet sich gut dazu
+        festzustellen, ob es Spaß machen wird, ein bestimmtes Rätsel zu lösen</li>
+        <li>Sudoku + Lösungsweg: HoDoKus Lösung ansehen, nach Belieben ändern oder
+        eigene, neue Lösungen erstellen</li>
+        <li>Sudoku + Alle Lösungsschritte finden: Listet alle verfügbaren Schritte
+        für den aktuellen Zustand des Sudokus auf</li>
+        <li>Puzzle + Aktive Zelle: Zum Setzen von Werten in Zellen, Ein-/Ausschalten von Kandidaten
+        oder Wählen von Farben, ohne die Tastatur verwenden zu müssen.</li>
+    </ul>
+    <p>Die Anzeigemodi können über das Ansicht-Menü gewechselt werden. Ist einer
+    der Nicht-Standard-Modi aktiv (Zusammenfassung, Lösungsweg, Alle Schritte oder Aktive Zelle),
+    kann der Modus mit Hilfe der Reiter im rechten Teil des Fensters
+    verändert werden.</p>
+    <h2><a name="display_mode_1"></a>Nur Sudoku (Standard)</h2>
+    <img class="scr_l" src="img/scrpv1.png" alt="Screenshot: Nur Sudoku">
+    <p>Der Standard-Modus verfügt über den Sudoku-Bereich, einen Hinweis-Bereich, das Menü, eine Werkzeugleiste
+    und eine Statusleiste.</p>
+    <p>Die Werkzeugleiste enthält:</p>
+    <ul class="nfloat">
+        <li>Die Rückgängig/Wiederherstellen-Knöpfe</li>
+        <li>Den "Neues Rätsel erzeugen"-Knopf</li>
+        <li>Eine Auswahlbox um den Schwierigkeitsgrad der neu erzeugten Sudokus einzustellen</li>
+        <li>Knöpfe für die Filter (siehe <a href="docs_play.html#filters">Filter verwenden</a>)</li>
+        <li>Optional: Knöpfe zum Anzeigen von Hinweisen und Lösungsschritten.</li>
+    </ul>
+    <p>Die Statusleiste enthält Pseudo-Knöpfe zum Wählen von Farben
+    (siehe <a href="docs_play.html#mouse">Maus verwenden</a> oder <a href="tech_col.html">Coloring</a>)
+    und zum Setzen des Färbemodus (Zelle oder Kandidat). Wenn ein Sudoku geladen wurde, werden
+    Bewertung und Schwierigkeitsstufe (siehe <a href="docs_cre.html#rating">Bewertung und Schwierigkeitsstufen</a>)
+    sowie eine Fortschrittsanzeige (siehe <a href="docs_play.html#progress">Fortschrittsanzeige</a>) angezeigt.
+    Das letzte Feld zeigt den Spielmodus (siehe <a href="docs_play.html#modes">Spielmodi</a>).</p>
+
+    <p>Im Rätsel-Bereich werden Angaben (Werte für Zellen, die zum Ausgangszustand des
+    Sudokus gehören) schwarz angezeigt, sie können nicht geändert werden. Vom Spieler eingegebene
+    Werte werden blau gezeichnet und die Kandidaten (verbleibende mögliche Werte für jede Zelle)
+    sind hellgrau. Die Kandidaten werden nur angezeigt, wenn "Alle Kandidaten anzeigen" im
+    Optionen-Menü gewählt ist. Abhängig vom Zustand der anderen Schalter in diesem Menü kann
+    HoDoKu ungültige Werte oder Werte, die von der korrekten Lösung abweichen, speziell anzeigen.</p>
+
+    <p>Der Screenshot zeigt beide Möglichkeiten: Der Wert 7 wurde fälschlicherweise in
+    r3c6 (die Zelle in Zeile 3 und Spalte 6) eingegeben. Das verträgt sich natürlich nicht
+    mit den (richtigen) Werten 7 in r3c7 (selber Wert zwei Mal in der selben Zeile) und r7c6
+    (selber Wert zwei Mal in der selben Spalte). Wenn "Ungültige Werte anzeigen" gewählt wurde,
+    werden alle drei Zellen als ungültig markiert und rot angezeigt.</p>
+    
+    <p>In Zelle r5c2 wurde der Wert 3 eingegeben. Das ist an sich nicht ungültig (es verstößt nicht gegen
+    die Regeln), allerdings hat die Lösung eigentlich eine 5 in dieser Zelle. Wenn "Abweichungen von der
+    Lösung anzeigen" gewählt wurde, wird die 3 als Abweichung markiert und hellrot angezeigt.</p>
+
+    <p>Die gleichen Farben werden auch auf fehlerhafte Kandidaten angewendet. Durch die 3 in r5c3
+    werden die Kandidaten 3 aus r4c2, r6c2, r5c6 und r5c8 gelöscht. Unglücklicherweise ist 3 aber
+    die korrekte Lösung für r6c3 und r5c6, die Kandidaten 3 werden daher in diesen Zellen ebenfalls
+    hellrot gezeichnet.</p>
+
+    <p>Der Hinweis-Bereich im unteren Teil des Fensters enthält eine Textrepräsentation des
+    Lösungsschrittes, der derzeit im Sudoku angezeigt wird. Das Hinweis-System wird im Kapitel 2 in 
+    <a href="docs_play.html#hint_system">Hinweise und Hilfen</a> detailliert erklärt.
+    Der Hinweis-Bereich kann ausgeblendet werden, um mehr Platz für das Sudoku selbst
+    zu schaffen. Dies ist speziell für Geräte mit niedrig auflösenden Bildschirmen
+    (Laptops...) gedacht.</p>
+
+    <h2 class="clear"><a name="display_mode_2"></a>Zusammenfassung</h2>
+    <img class="scr_l" src="img/scrpv2.png" alt="Screenshot: Zusammenfassung">
+    <p>Die Zusammenfassung zeigt in einer Tabelle, welche Lösungstechniken HoDoKu
+    beim Lösen des Sudokus wie oft verwendet hat. Zusätzlich wird für jede Technik
+    angezeigt, wie oft sie vorgekommen ist und welche Bewertung das ergibt (siehe
+    <a href="docs_cre.html#rating">Bewertung und Schwierigkeitsstufen</a>).</p>
+
+    <p>Dieser Anzeigemodus ist auch besonders dann hilfreich, wenn man entscheiden will, ob
+    es Spaß machen wird, ein neu erzeugtes Sudoku zu lösen. Sudokus, die Techniken enthalten,
+    die man nicht besonders mag, können damit leicht übersprungen werden (natürlich kann man
+    HoDoKu auch so konfigurieren, dass solche Sudokus gar nicht erst angezeigt werden, siehe
+    <a href="docs_cre.html">Sudoku erzeugen</a>).</p>
+    
+    <p>Im Screenshot werden die optionalen Hinweis/Lösungsschritt-Buttons in der Werkzeugleiste
+    angezeigt. Der Hinweis-Bereich wurde entfernt, um das Rätsel größer zu machen.
+    Die Fortschrittsanzeige gibt an, wie weit das Sudoku bereits gelöst wurde: Die Bewertung
+    aller noch nötigen Lösungsschritte ist 20 % der Gesamtbewertung des Sudokus und es gibt
+    mindestens noch einen Lösungsschritt der Stufe "Unfair" zu bewältigen (wird durch die
+    orange Kugel symbolisiert).</p>
+
+    <h2 class="clear"><a name="display_mode_3"></a>Lösungsweg</h2>
+    <img class="scr_l" src="img/scrpv3.jpg" alt="Screenshot: Lösungsweg">
+    <p>Dieser Modus zeigt, wie HoDoKu das Sudoku gelöst hat. Man kann mit einem einfachen
+    Doppelklick zu einer bestimmten Stelle in der Lösung springen. Außerdem kann dieser Modus
+    als Ausgangspunkt für das Erstellen eigener Lösungen verwendet werden.</p>
+
+    <p>Lösungswege sind nicht fix, sie können jederzeit geändert werden. Neue oder andere
+    Lösungsschritte können in den Lösungsweg eingefügt werden (siehe 
+    <a href="docs_sol.html">Mit Lösungswegen arbeiten</a>). HoDoKu unterstützt beliebig viele
+    verschiedene Lösungen für ein und dasselbe Sudoku. Lösungswege werden automatisch
+    mit gespeichert, wenn Sudokus in Dateien geschrieben werden.</p>
+
+    <h2 class="clear"><a name="display_mode_4"></a>Alle möglichen Schritte</h2>
+    <img class="scr_l" src="img/scrpv4.jpg" alt="Screenshot: Alle möglichen Schritte finden">
+    <p>In diesem Modus kann man sich alle Lösungsschritte anzeigen lassen, die im derzeitigen
+    Zustand des Sudokus angewendet werden können. Speziell bei einfachen oder mittelschweren
+    Sudokus kann die reine Menge an verschiedenen Schritten ziemlich überwältigend werden.
+    Um das zu vermeiden, kann die Suche beliebig konfiguriert werden (siehe
+    <a href="docs_fas.html">Alle möglichen Schritte finden</a>).</p>
+
+    <p>Der "Alle möglichen Schritte"-Modus dient auch dazu neue Lösungsschritte in
+    bestehende Lösungswege einzubauen. Außerdem ist er eine großartige Lernhilfe und man kann
+    mit seiner Hilfe leicht entscheiden, ob eine bestimmte Technik jetzt anwendbar ist
+    oder nicht (einfach nach allen Vorkommen dieser Technik suchen und nachschauen, ob
+    die eigene Variante vorkommt).</p>
+
+    <h2 class="clear"><a name="display_mode_4a"></a>Aktive Zelle</h2>
+    <img class="scr_l" src="img/scrpv4a.jpg" alt="Screenshot: Aktive Zelle">
+    <p>Die Ansicht "Aktive Zelle" ist eine Art Lupe für die gerade ausgewählte Zelle oder Gruppe
+    von Zellen. Sie erlaubt es, Werte in Zellen zu setzen oder Kandidaten ein- bzw. auszuschalten.
+    Im Screenshot kann (wegen des <a href="tech_naked.html#n3l3">Locked Triples</a> in den Zellen
+    r123c9) Kandidat 2 aus allen selektierten Zellen entfernt werden, indem die "2" unter
+    "Kandidaten ausschließen" gedrückt wird.</p>
+    <p>Mit den Farbpaletten im unteren Teil der Ansicht kann in den Färbemodus für Zellen oder
+    Kandidaten gewechselt werden (siehe <a href="docs_play.html#mouse">Maus verwenden</a> oder
+    <a href="tech_col.html">Coloring</a>).</p>
+
+    <h2 class="clear"><a name="display_mode_5"></a>Größe der Anzeigebereiche verändern</h2>
+    <p>Die Größe der einzelnen Anzeigebereiche kann praktisch unbegrenzt angepasst werden.
+    Prinzipiell versucht der Rätsel-Bereich, so viel Platz wie möglich für sich in Anspruch
+    zu nehmen. Der obere Rahmen des Hinweis-Bereichs und der rechte Rahmen des Sudoku-Bereichs
+    lassen sich aber mit der Maus angreifen und verschieben, um die Größe der einzelnen
+    Bereich zu verändern.</p>
+    <p>Hinweis-Bereich und Werkzeugleiste können ausgeblendet werden, um mehr Platz für
+    das Rätsel zu bekommen. Das ist besonders auf Bildschirmen mir geringer vertikaler
+    Auflösung nützlich, z.B. auf Laptops oder Tablets. Der Menüpunkt "Ansicht|Vollbildmodus"
+    vergrößert das Sudoku so weit es geht.</p>
+    <p>Der Zustand des Fensters wird beim Beenden des Programms automatisch gespeichert und
+    beim nächsten Programmstart wiederhergestellt. Der Menüeintrag "Ansicht|Ansicht zurücksetzen"
+    setzt alles auf HoDoKus Standardeinstellungen zurück.</p>
+    <hr>
+
+    <h2 class="clear"><a name="display_mode_6"></a>Schriftgröße verändern</h2>
+    <img class="scr_l" src="img/scrpv6.jpg" alt="Screenshot: Schriftgröße verändern">
+    <p>HoDoKu verwendet die Standardeinstellungen des Betriebssystems, wenn Menüs oder
+    Dialoge angezeigt werden sollen. Es ist jedoch möglich, die Schriftgröße unter
+    "Einstellungen|Allgemein" zu verändern: Dazu muss "Standardgröße für Schriftarten"
+    abgewählt werden, dann kann unter "Benutzerdefinierte Schriftgröße" ein neuer
+    Wert eingegeben werden. Das ist besonders für große Monitore und für sehbehinderte
+    Benutzer gedacht.</p>
+    <p>Der Screenshot zeigt HoDoKus "Alle möglichen Schritte"-Modus mit einer
+    benutzerdefinierten Schriftgröße von "16".</p>
+    <hr class="clear">
+
+    <h2 class="clear"><a name="display_mode_7"></a>ColorKu-Modus</h2>
+    <img class="scr_l" src="img/scr04_de_wi.png" alt="Screenshot: ColorKu-Modus">
+    <p>Im ColorKu-Modus verwendet HoDoKu Farben anstelle der üblichen Ziffern. Alles andere
+    funktioniert wie im normalen Sudoku-Modus.</p>
+    <hr class="clear">
+
+
+    <h1><a name="running_hodoku"></a>HoDoKu ausführen</h1>
+    <p>HoDoKu ist in Java/Swing geschrieben und sollte daher auf jeder Plattform laufen, die von Java
+    unterstützt wird (getestet auf Windows und Linux - Ubuntu/GTK+-LAF). Da das Programm in Java geschrieben
+    wurde, muss die Java Laufzeitumgebung (JRE) Version 1.6 oder höher auf dem Computer installiert sein, um
+    HoDoKu ausführen zu können. Die Java Laufzeitumgebung kann von folgender Adresse bezogen werden:</p>
+    <p class="indleft"><a href="https://www.oracle.com/java/technologies/downloads/?er=221886">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>.</p>
+
+    <h2>Windows</h2>
+    <p>Für Windows existiert ein Installationspaket (*.msi), das auf allen Windows-Versionen verwendet werden kann.
+    Es erzeugt einen EIntrag im Startmenü und eine Verknüpfung am Desktop und verbinden *.hsol und *.hcfg-Dateien
+    mit dem Programm. HoDoKu kann auch von einem USB-Stick gestartet werden (siehe <a href="#portable_hodoku">unten</a>).</p>
+
+    <h2>Andere Betriebssysteme</h2>
+    <p>Für alle Betriebssysteme außer Windows muss hodoku.jar verwendet werden. HoDoKu benötigt ziemlich viel
+    Arbeitsspeicher (speziell wenn die Funktion "Alle verfügbaren Schritte finden" verwendet wird). Die empfohlene Art
+    HoDoKu zu starten ist:</p>
+
+	<p class="indleft">java -Xmx512m -jar hodoku.jar</p>
+
+    <p><b>Bitte beachten:</b> Der Parameter "-Xmx" ist nur in der von Oracle zur Verfügung gestellten Laufzeitumgebung
+    enthalten. Wird eine andere Umgebung verwendet, muss der korrekte Parameter zum Setzen der Obergrenze des
+    Heap-Speichers der Dokumentation entnommen werden.</p>
+    <hr>
+
+    <h1><a name="portable_hodoku"></a>Portables HoDoKu</h1>
+    <p>HoDoKu ist portabel: hodoku.exe oder hodoku.jar auf einen USB-Stick, eine DVD oder ein
+    Netzwerklaufwerk legen und direkt von dort starten. Solange eine passende Java-Laufzeitumgebung
+    am Rechner vorhanden ist, läuft HoDoKu ohne Probleme.</p>
+    <p>Es ist auch möglich, eine eigene Konfiguration zu verwenden: HoDoKu wie gewünscht konfigurieren,
+    die Konfiguration in eine Datei "hodoku.hcfg" (ohne Anführungszeichen) speichern und diese
+    Datei ins selbe Verzeichnis legen wie die exe- oder jar-Datei. Die in der Datei gespeicherten
+    Optionen werden beim Programmstart automatisch gelesen.</p>
+    <p><b>Vorsicht:</b> Änderungen an der aktuellen Konfiguration werden nicht automatisch in
+    der oben beschriebenen hodoku.hcfg-Datei gespeichert.</p>
+
+<div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

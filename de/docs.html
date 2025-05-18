@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Benutzerhandbuch (Inhaltsverzeichnis)</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="Benutzerhandbuch für HoDoKu - ein Generator/Helfer/Analysator für Sudoku geschrieben in Java (Inhaltsverzeichnis)">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsche version,version,geschichte,änderungen,english,lösungstechniken,tipps,fish,uniqueness,coloring,chains,als,wings,subsets">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<style type="text/css" media="all">
+<!--
+#menu li.mDocs a, #menu li.mDocs a:hover {
+    font-style: italic;
+    background-color:#fceabe;
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+        <li><ul class="sub1">
+                <li class="mDocsIntro"><a href="docs_intro.html">Einleitung</a></li>
+                <li class="mDocsPlay"><a href="docs_play.html">Spielen</a></li>
+                <li class="mDocsSolv"><a href="docs_solv.html">Solver</a></li>
+                <li class="mDocsCre"><a href="docs_cre.html">Puzzles erzeugen</a></li>
+                <li class="mDocsFAS"><a href="docs_fas.html">Alle Lösungsschritte</a></li>
+                <li class="mDocsSol"><a href="docs_sol.html">Lösungswege</a></li>
+                <li class="mDocsRef"><a href="docs_ref.html">Referenz</a></li>
+    </ul></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/docs.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/docs.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>Benutzerhandbuch</h1>
+    <p>HoDoKu wurde mit den Ziel größtmöglicher Benutzerfreundlichkeit entworfen.
+    Wie bei jedem Programm reicht Intuition alleine aber auch bei HoDoKu nicht aus
+    um alle Funktionen zu entdecken. Um dem abzuhelfen, wurde dieses Handbuch
+    geschrieben. Es wurde auf mehrere Webseiten aufgeteilt, am Beginn
+    jeder Seite findet sich ein Inhaltsverzeichnis für die jeweilige Seite.
+    Wenn Sie irgendetwas vermissen oder einfach nur zusätzliche Fragen haben,
+    benützen Sie bitte das <a href="https://sourceforge.net/p/hodoku/discussion/907403/">Support Forum</a>
+    (Anfragen können selbstverständlich auf Deutsch gestellt werden).</p>
+    <p>Fröhliches Rätseln!</p>
+    <h2>Inhaltsverzeichnis</h2>
+    
+    <ul class="toc">
+        <li><a href="docs_intro.html">Einleitung</a></li>
+        <li class="ni"><ul>
+            <li><a href="docs_intro.html#features">Funktionen</a></li>
+            <li><a href="docs_intro.html#display_modes">Anzeigemodi</a></li>
+            <li><a href="docs_intro.html#running_hodoku">HoDoKu ausführen</a></li>
+        </ul></li>
+        <li><a href="docs_play.html">Sudokus lösen</a></li>
+        <li class="ni"><ul>
+            <li><a href="docs_play.html#create_enter">Neues Sudoku erstellen oder eingeben</a></li>
+            <li><a href="docs_play.html#keyboard">Tastatur verwenden</a></li>
+            <li><a href="docs_play.html#mouse">Maus verwenden</a></li>
+            <li><a href="docs_play.html#modes">Spielmodi</a></li>
+            <li><a href="docs_play.html#hint_system">Hinweise und Hilfen</a></li>
+            <li><a href="docs_play.html#filters">Filter verwenden</a></li>
+            <li><a href="docs_play.html#progress">Fortschrittsanzeige</a></li>
+            <li><a href="docs_play.html#undo_redo">Rückgängig machen/Wiederherstellen</a></li>
+            <li><a href="docs_play.html#clipboard">Zwischenablage verwenden</a></li>
+            <li><a href="docs_play.html#restart">Spiel neu starten</a></li>
+            <li><a href="docs_play.html#savep">Sicherungspunkte</a></li>
+            <li><a href="docs_play.html#save_load">Konfigurationen und Sudokus speichern/laden</a></li>
+            <li><a href="docs_play.html#print">Sudokus ausdrucken</a></li>
+            <li><a href="docs_play.html#images">Grafiken von Sudokus erzeugen</a></li>
+        </ul></li>
+        <li><a href="docs_solv.html">Solver konfigurieren</a></li>
+        <li class="ni"><ul>
+            <li><a href="docs_solv.html#strategy">Lösungsstrategie</a></li>
+            <li><a href="docs_solv.html#en_disable">Lösungstechniken (de-)aktivieren</a></li>
+            <li><a href="docs_solv.html#change_order">Reihenfolge der Lösungstechniken ändern</a></li>
+            <li><a href="docs_solv.html#examples">Zweideutigkeiten und Beispiele</a></li>
+            <li><a href="docs_solv.html#progress">Fortschrittsmaß</a></li>
+            <li><a href="docs_solv.html#backdoor">Suche nach Hintertüren</a></li>
+            <li><a href="docs_solv.html#options">Optionen für Lösungstechniken</a></li>
+        </ul></li>
+        <li><a href="docs_cre.html">Sudokus erzeugen</a></li>
+        <li class="ni"><ul>
+            <li><a href="docs_cre.html#rating">Bewertung und Schwierigkeitsstufen</a></li>
+            <li><a href="docs_cre.html#training">Erzeugen von Sudokus im Lern- oder Übungsmodus</a></li>
+            <li><a href="docs_cre.html#create">Sudokus mit bestimmten Lösungstechniken erzeugen</a></li>
+            <li><a href="docs_cre.html#batch">Sudokus im Batchbetrieb erzeugen</a></li>
+            <li><a href="docs_cre.html#sources">Quellen für Sudokus</a></li>
+        </ul></li>
+        <li><a href="docs_fas.html">Alle möglichen Schritte finden</a></li>
+        <li class="ni"><ul>
+            <li><a href="docs_fas.html#intro">Einleitung</a></li>
+            <li><a href="docs_fas.html#config">Konfiguration</a></li>
+            <li><a href="docs_fas.html#ordering">Sortieroptionen</a></li>
+        </ul></li>
+        <li><a href="docs_sol.html">Mit Lösungswegen arbeiten</a></li>
+        <li class="ni"><ul>
+            <li><a href="docs_sol.html#intro">Einleitung</a></li>
+            <li><a href="docs_sol.html#jump">Zu bestimmten Lösungsschritten springen</a></li>
+            <li><a href="docs_sol.html#change">Lösungswege ändern</a></li>
+            <li><a href="docs_sol.html#add_delete">Lösungswege hinzufügen/löschen/umbenennen</a></li>
+            <li><a href="docs_sol.html#print">Lösungswege drucken</a></li>
+        </ul></li>
+        <li><a href="docs_ref.html">Referenz</a></li>
+        <li class="ni"><ul>
+            <li><a href="docs_ref.html#options">Optionen</a></li>
+            <li><a href="docs_ref.html#command_line">Kommandozeilenoptionen</a></li>
+            <li><a href="docs_ref.html#files">Von HoDoKu verwendete Dateien</a></li>
+        </ul></li>
+    </ul>
+
+<div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>

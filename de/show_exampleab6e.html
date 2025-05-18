@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>HoDoKu: Locked Triple Beispiel</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="HoDoKu - Sudoku für Süchtige: Beispiel anzeigen">
+    <meta name="keywords" content="sudoku,java,hodoku,deutsch,Lösungstechniken,Beispiel">
+    <meta name="author" content="Bernhard Hobiger">
+    <link rel="stylesheet" href="../hodoku.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../print.css" type="text/css" media="print">
+</head>
+<body>
+<div id="wrapper">
+<div id="header"></div>
+<div id="menu">
+    <ul>
+        <li class="mHome"><a href="index.html">Startseite</a></li>
+        <li class="mTech"><a href="techniques.html">Lösungsstrategien</a></li>
+            <li class="mDocs"><a href="docs.html">Benutzerhandbuch</a></li>
+                    <li class="mChange"><a href="changelog.html">Versionsgeschichte</a></li>
+                               <li class="mLibs"><a href="libs.html">Bibliotheken</a></li>
+        <li class="mLinks"><a href="links.html">Links</a></li>
+        </ul>
+
+<div class="logos">
+<a href="../en/show_example.html"><img src="../img/en.gif" alt="Switch to englich version"></a><a href="../en/show_example.html">English Version</a></div>
+
+<div class="logos">
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="../img/gplv3-88x31.png" alt="GPLv3 logo"></a>
+</div>
+</div>
+<div id="content">
+    <h1>HoDoKu Lösungstechnik-Index: Beispiel für "Locked Triple"</h1>
+    <p><img src="../examples/l302.png" alt="Beispiel für Lösungstechniken"></p>
+    <h2>Originales Sudoku:</h2>
+    <p><code>4..5..37.32......4.6.......8....2.3.21.84...........9..7..9.1...4.651.......7....
+</code></p>
+
+    <h2>Verwenden Sie die folgende Zeile um das Sudoku in HoDoKu zu laden:</h2>
+    <p><code>:0111:567:4..5..37.32......4.6.......8....2.3.21.84...........9..7..9.1..+94.651.......7....::547 549 553 556 567 569 647 649 653 656 667 669 747 749 753 756 767 769:
+</code></p>
+
+    <h2>Die folgende Darstellung kann per Zwischenablage in die meisten Sudoku-Programme eingefügt werden:</h2>
+    <pre>.------------------.---------------------.-----------------------.
+
+| 4    89   189    | 5       1268  689   | 3       7      12689  |
+
+| 3    2    15789  | 179     168   6789  | 5689    1568   4      |
+
+| 157  6    15789  | 123479  1238  34789 | 2589    1258   12589  |
+
+:------------------+---------------------+-----------------------:
+
+| 8    59   45679  | 179     16    2     | 4567    3      1567   |
+
+| 2    1    35679  | 8       4     35679 | 567     56     567    |
+
+| 567  35   34567  | 137     136   3567  | 245678  9      125678 |
+
+:------------------+---------------------+-----------------------:
+
+| 56   7    23568  | 234     9     348   | 1       24568  23568  |
+
+| 9    4    238    | 6       5     1     | 278     28     2378   |
+
+| 156  358  123568 | 234     7     348   | 245689  24568  235689 |
+
+&#039;------------------&#039;---------------------&#039;-----------------------&#039;
+</pre>
+
+    <h2>Darstellung des Lösungsschrittes:</h2>
+    <pre>.--------------------.------------------------.--------------------------------.
+
+| 4    89   189      | 5       1268  689      |  3           7       12689     |
+
+| 3    2    15789    | 179     168   6789     |  5689        1568    4         |
+
+| 157  6    15789    | 123479  1238  34789    |  2589        1258    12589     |
+
+:--------------------+------------------------+--------------------------------:
+
+| 8    59   45679    | 179     16    2        |  4-5-6-7     3       1-5-6-7   |
+
+| 2    1    3-5-6-79 | 8       4     3-5-6-79 | *567        *56     *567       |
+
+| 567  35   34567    | 137     136   3567     |  24-5-6-78   9       12-5-6-78 |
+
+:--------------------+------------------------+--------------------------------:
+
+| 56   7    23568    | 234     9     348      |  1           24568   23568     |
+
+| 9    4    238      | 6       5     1        |  278         28      2378      |
+
+| 156  358  123568   | 234     7     348      |  245689      24568   235689    |
+
+&#039;--------------------&#039;------------------------&#039;--------------------------------&#039;
+
+
+
+Locked Triple: 5,6,7 in r5c789 =&gt; r4c79,r5c36,r6c79&lt;&gt;5, r4c79,r5c36,r6c79&lt;&gt;6, r4c79,r5c36,r6c79&lt;&gt;7
+
+
+
+
+
+
+</pre>
+  <div id="impressum">
+    <p>Copyright &copy; 2008-12 von Bernhard Hobiger<br><b>Zuletzt geändert am 5. Mai 2025 von shorty#3746<br>(basierend auf dem 1to9only Github-Repo)</b><br>
+    Alles Material auf dieser Site unterliegt der <a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU FDLv1.3</a>.</p>
+</div><!-- impressum -->
+
+
+</div><!-- content -->
+</div><!-- wrapper -->
+</body>
+</html>
